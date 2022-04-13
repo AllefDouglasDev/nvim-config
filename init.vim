@@ -14,6 +14,8 @@ set hidden
 set updatetime=300
 set shortmess+=c 
 set signcolumn=yes
+set laststatus=2
+set statusline+=\ %f%m
 
 "====================================================================================
 "plugins
@@ -21,6 +23,8 @@ set signcolumn=yes
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -39,6 +43,8 @@ Plug 'ap/vim-css-color'
 Plug 'nvim-lua/plenary.nvim' 
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'dense-analysis/ale'
 " Themes
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
@@ -66,6 +72,16 @@ require('telescope').setup {
     file_ignore_patterns = {"node_modules"}
   }
 }
+require('telescope').load_extension('fzf')
+EOF
+
+" LSP Installer Config
+lua << EOF
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+    server:setup(opts)
+end)
 EOF
 
 let g:NERDTreeGitStatusWithFlags = 1
@@ -96,12 +112,14 @@ nmap gc <plug>NERDCommenterToggle
 
 " coc config
 let g:coc_global_extensions = [
+  \ 'coc-omnisharp',
   \ 'coc-snippets',
   \ 'coc-pairs',
   \ 'coc-tsserver',
   \ 'coc-eslint', 
   \ 'coc-prettier', 
   \ 'coc-json', 
+  \ 'coc-phpls', 
   \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -135,6 +153,10 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nmap <Space>gd :OmniSharpGotoDefinition<CR>
+nmap <Space>gi :OmniSharpFindImplementations<CR>
+nmap <Space>K :OmniSharpDocumentation<CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
