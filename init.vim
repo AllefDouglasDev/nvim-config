@@ -1,6 +1,6 @@
-"====================================================================================
+"==============================================================================
 "general
-"====================================================================================
+"==============================================================================
 
 set number
 set mouse=a
@@ -17,13 +17,18 @@ set signcolumn=yes
 set laststatus=2
 set statusline+=\ %f%m
 set noswapfile
+set nohlsearch
+set noerrorbells
+set incsearch
+set scrolloff=8
+set colorcolumn=80
+set termguicolors     
 
-"====================================================================================
+"==============================================================================
 "plugins
-"====================================================================================
+"==============================================================================
 
 call plug#begin('~/.vim/plugged')
-
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -46,24 +51,37 @@ Plug 'OmniSharp/omnisharp-vim'
 Plug 'dense-analysis/ale'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'akinsho/toggleterm.nvim'
-" Themes
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'ayu-theme/ayu-vim'
 Plug 'Mofiqul/vscode.nvim'
-
 call plug#end()
 
-"====================================================================================
+"==============================================================================
+"theme
+"==============================================================================
+
+" ayu configs
+let ayucolor="mirage" 
+
+" vscode configs
+let g:vscode_style = "dark"
+let g:vscode_transparency = 1
+let g:vscode_italic_comment = 1
+let g:vscode_disable_nvimtree_bg = v:true
+
+colorscheme gruvbox
+
+"==============================================================================
 "configs
-"====================================================================================
+"==============================================================================
 
 " vim-closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.php,*.tsx'
 
-" Fuzzy find telescope
+" Telescope
 nnoremap <C-p> :Telescope find_files<CR>
 nnoremap <Space>fg :Telescope live_grep<CR>
 nnoremap <Space>fb :Telescope buffers<CR>
@@ -94,28 +112,25 @@ require'nvim-treesitter.configs'.setup {
   ignore_install = { "javascript" },
   highlight = {
     enable = true,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
 }
 EOF
 
-let g:NERDTreeGitStatusWithFlags = 1
-let g:NERDTreeIgnore = ['^node_modules$']
-let g:NERDTreeShowHidden = 1
-
-" prettier command for coc
+" Prettier command for coc
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " NERDTree
+let g:NERDTreeGitStatusWithFlags = 1
+let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeShowHidden = 1
+
 function! NerdTreeToggleFind()
     if exists("g:NERDTree") && g:NERDTree.IsOpen()
         NERDTreeClose
@@ -266,20 +281,6 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 let g:copilot_filetypes = {
       \ '*': v:false,
       \ }
-
-" Theme configuration
-" For dark theme
-let g:vscode_style = "dark"
-" Enable transparent background.
-let g:vscode_transparency = 1
-" Enable italic comment
-let g:vscode_italic_comment = 1
-" Disable nvim-tree background color 
-let g:vscode_disable_nvimtree_bg = v:true
-
-set termguicolors     
-let ayucolor="mirage" 
-colorscheme ayu
 
 " Toggle Terminal Configurations
 autocmd TermEnter term://*toggleterm#*
