@@ -14,15 +14,19 @@ set hidden
 set updatetime=300
 set shortmess+=c 
 set signcolumn=yes
-set laststatus=2
+set laststatus=3
 set statusline+=\ %f%m
 set noswapfile
-set nohlsearch
 set noerrorbells
 set incsearch
 set scrolloff=8
 set colorcolumn=80
 set termguicolors     
+set guicursor=
+set foldlevel=99
+set foldclose=all
+set foldmethod=indent
+set cursorline
 
 "==============================================================================
 "plugins
@@ -51,6 +55,7 @@ Plug 'OmniSharp/omnisharp-vim'
 Plug 'dense-analysis/ale'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'akinsho/toggleterm.nvim'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
@@ -72,11 +77,26 @@ let g:vscode_transparency = 1
 let g:vscode_italic_comment = 1
 let g:vscode_disable_nvimtree_bg = v:true
 
-colorscheme gruvbox
+colorscheme ayu
 
 "==============================================================================
 "configs
 "==============================================================================
+
+" clean search highlight
+nnoremap <C-B> :noh<CR>
+
+" multiple cursors
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-x>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-x>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 " vim-closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.php,*.tsx'
@@ -371,5 +391,20 @@ require("toggleterm").setup{
   }
 }
 EOF
+
+" Centerpad
+function! WriteRoomToggle(perc)
+  let l:name = '_writeroom_'
+  if bufwinnr(l:name) > 0
+    wincmd o
+  else
+    let l:width = (&columns - &textwidth) / a:perc
+    execute 'topleft' l:width . 'vsplit +setlocal\ nobuflisted' l:name | wincmd p
+    execute 'botright' l:width . 'vsplit +setlocal\ nobuflisted' l:name | wincmd p
+    endif
+  echo "toggle room"
+endfunction
+
+nnoremap <space>z :call WriteRoomToggle(4)<cr>
 
 "source $HOME/.config/nvim/themes/onedark.vim
