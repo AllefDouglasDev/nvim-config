@@ -79,7 +79,7 @@ colorscheme ayu
 "==============================================================================
 
 " clean search highlight
-nnoremap <C-B> :noh<CR>
+nnoremap <c-x> :noh<CR>
 
 " Moving between panels
 nnoremap <C-h> <C-W>h
