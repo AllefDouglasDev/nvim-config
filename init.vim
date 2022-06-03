@@ -3,8 +3,8 @@
 "==============================================================================
 
 set number
-set mouse=a
 set relativenumber
+set mouse=a
 set smarttab
 set cindent
 set tabstop=2
@@ -42,8 +42,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
-Plug 'github/copilot.vim'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
@@ -54,12 +52,9 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'dense-analysis/ale'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'akinsho/toggleterm.nvim'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'kdheepak/lazygit.nvim'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'ayu-theme/ayu-vim'
 Plug 'Mofiqul/vscode.nvim'
 call plug#end()
@@ -86,17 +81,11 @@ colorscheme ayu
 " clean search highlight
 nnoremap <C-B> :noh<CR>
 
-" multiple cursors
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-x>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-x>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_quit_key            = '<Esc>'
+" Moving between panels
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
 
 " vim-closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.php,*.tsx'
@@ -140,15 +129,9 @@ EOF
 " Prettier command for coc
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-" j/k will move virtual lines (lines that wrap)
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
 " NERDTree
 let g:NERDTreeGitStatusWithFlags = 1
-let g:NERDTreeIgnore = ['^node_modules$']
+"let g:NERDTreeIgnore = ['^node_modules$']
 let g:NERDTreeShowHidden = 1
 
 function! NerdTreeToggleFind()
@@ -254,19 +237,6 @@ nmap ac <Plug>(coc-codeaction)
 vmap qf <Plug>(coc-fix-current)
 nmap qf <Plug>(coc-fix-current)
 
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-" nmap <silent> <C-d> <Plug>(coc-range-select)
-" xmap <silent> <C-d> <Plug>(coc-range-select)
-
-nmap <c-s> :w<CR>
-xmap <c-s> <Esc>:w<CR>a
-
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
@@ -279,132 +249,5 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-" Copilot disable
-let g:copilot_filetypes = {
-      \ '*': v:false,
-      \ }
-
-" Toggle Terminal Configurations
-autocmd TermEnter term://*toggleterm#*
-      \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
-
-function! TVertical() 
-  ToggleTerm direction=vertical
-endfunction
-
-function! THorizontal() 
-  ToggleTerm direction=horizontal
-endfunction
-
-function! TFloat() 
-  ToggleTerm direction=float
-endfunction
-
-lua << EOF
-function _G.set_terminal_keymaps()
-  local opts = {noremap = true}
-  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
-end
-
-local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({
-  cmd = "lazygit",
-  dir = "git_dir",
-  direction = "float",
-  float_opts = {
-    border = "double",
-  },
-  on_open = function(term)
-    vim.cmd("startinsert!")
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
-  end,
-  on_close = function(term)
-    vim.cmd("Closing terminal")
-  end,
-})
-
-function _lazygit_toggle()
-  lazygit:toggle()
-end
-
-vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
-EOF
-
-function! _LAZYGIT()
-  lua _lazygit_toggle()
-endfunction
-
-autocmd! TermOpen term://* lua set_terminal_keymaps()
-
-nmap <space>m :call _LAZYGIT()<cr>
-
-lua << EOF
-require("toggleterm").setup{
-  -- size can be a number or function which is passed the current terminal
-  size = function(term)
-    if term.direction == "horizontal" then
-      return 20
-    elseif term.direction == "vertical" then
-      return vim.o.columns * 0.3
-    end
-  end,
-  open_mapping = [[<c-\>]],
-  hide_numbers = true, 
-  shade_filetypes = {},
-  shade_terminals = true,
-  shading_factor = 2, 
-  start_in_insert = true,
-  insert_mappings = true, 
-  terminal_mappings = true, 
-  persist_size = true,
-  direction = 'float',
-  close_on_exit = true, 
-  shell = vim.o.shell, 
-  float_opts = {
-    border = 'curved',
-    winblend = 0
-  }
-}
-EOF
-
-" Centerpad
-function! WriteRoomToggle(perc)
-  let l:name = '_writeroom_'
-  if bufwinnr(l:name) > 0
-    wincmd o
-  else
-    let l:width = (&columns - &textwidth) / a:perc
-    execute 'topleft' l:width . 'vsplit +setlocal\ nobuflisted' l:name | wincmd p
-    execute 'botright' l:width . 'vsplit +setlocal\ nobuflisted' l:name | wincmd p
-    endif
-  echo "toggle room"
-endfunction
-
-nnoremap <space>z :call WriteRoomToggle(4)<cr>
-
-"source $HOME/.config/nvim/themes/onedark.vim
+" lazygit
+nnoremap <space>m :LazyGit<cr>
