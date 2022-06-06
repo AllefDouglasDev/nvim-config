@@ -27,6 +27,8 @@ set foldlevel=99
 set foldclose=all
 set foldmethod=indent
 set cursorline
+set splitbelow
+set splitright
 
 "==============================================================================
 "plugins
@@ -36,6 +38,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -57,6 +60,8 @@ Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'Mofiqul/vscode.nvim'
+Plug 'janko/vim-test'
+Plug 'puremourning/vimspector'
 call plug#end()
 
 "==============================================================================
@@ -132,6 +137,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " NERDTree
 let g:NERDTreeGitStatusWithFlags = 1
 "let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeIgnore = ['^.DS_Store$']
 let g:NERDTreeShowHidden = 1
 
 function! NerdTreeToggleFind()
@@ -251,3 +257,46 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " lazygit
 nnoremap <space>m :LazyGit<cr>
+
+" try to access cht.sh
+function! ChtSh(lang, query)
+  let new_query = substitute(a:query, ' ', '+', 'g')
+  let new_url = 'cheat.sh/' . a:lang . '/' . new_query
+  :split
+  execute 'term curl ' . new_url 
+endfunction
+
+" janko/vim-test
+nnoremap <silent> tt :TestNearest<CR>
+nnoremap <silent> tf :TestFile<CR>
+nnoremap <silent> ts :TestSuit<CR>
+nnoremap <silent> t_ :TestLast<CR>
+let test#strategy = 'neovim'
+let test#neovim#term_position = 'vertical'
+
+" puremourning/vimspector
+nnoremap <Space>da :call vimspector#Launch()<CR>
+nnoremap <Space>dx :call vimspector#Reset()<CR>
+nnoremap <Space>k :call vimspector#StepOut()<CR>
+nnoremap <Space>l :call vimspector#StepInto()<CR>
+nnoremap <Space>j :call vimspector#StepOver()<CR>
+nnoremap <Space>d_ :call vimspector#Restart()<CR>
+nnoremap <Space>dn :call vimspector#Continue()<CR>
+nnoremap <Space>drc :call vimspector#RunToCursor()<CR>
+nnoremap <Space>dh :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <Space>de :call vimspector#ToggleConditionalBreakpoint()<CR>
+nnoremap <Space>dX :call vimspector#ClearBreakpoints()<CR>
+func! AddToWatch()
+  let word = expand("<cexpr>")
+  call vimspector#AddWatch(word)
+endfunction
+let g:vimspector_base_dir = expand('$HOME/.config/nvim/vimspector-config')
+
+" janko/vim-test and puremourning/vimspector
+function! JestStrategy(cmd)
+  let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
+  call vimspector#LaunchWithSettings( #{ configuration: 'jest', TestName: testName } )
+endfunction
+let g:test#custom_strategies = {'jest': function('JestStrategy')}
+nnoremap <Space>dd :TestNearest -strategy=jest<CR>
+

@@ -1,0 +1,37 @@
+snippet sci "Styled Component with import"
+import styled from 'styled-components'
+
+export const ${1:Wrapper} = styled.${2:div}\`
+	$3
+\`
+endsnippet
+
+snippet sc "Styled Component"
+export const ${1:Wrapper} = styled.${2:div}\`
+	$3
+\`
+endsnippet
+
+snippet sct "Styled Component with theme"
+export const ${1:Wrapper} = styled.${2:div}\`
+	${({ theme }) => css\`
+		$3
+	\`}
+\`
+endsnippet
+
+snippet scit "Styled Component with import and theme"
+import styled, { css } from 'styled-components'
+
+export const ${1:Wrapper} = styled.${2:div}\`
+	${({ theme }) => css\`
+		$3
+	\`}
+\`
+endsnippet
+
+snippet st "Styled Theme"
+${({ theme }) => css\`
+	$1
+\`}
+endsnippet

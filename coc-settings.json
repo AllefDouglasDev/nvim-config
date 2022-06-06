@@ -2,10 +2,14 @@
   "eslint.autoFixOnSave": true,
   "suggest.noselect": false,
   "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "html",
+    "yaml",
+    "json",
+    "markdown",
     "javascript",
     "typescript",
     "typescriptreact",
-    "json",
     "javascriptreact",
     "typescript.tsx",
     "graphql"
@@ -19,5 +23,6 @@
   },
   "omnisharp.version": "v.1.37.3",
   "omnisharp.trace.server": "information",
-  "omnisharp.debug.server": true
+  "omnisharp.debug.server": true,
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snips"
 }
