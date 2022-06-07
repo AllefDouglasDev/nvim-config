@@ -62,6 +62,10 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'janko/vim-test'
 Plug 'puremourning/vimspector'
+" svelte development
+Plug 'evanleck/vim-svelte'
+Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim'
 call plug#end()
 
 "==============================================================================
@@ -92,8 +96,27 @@ nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 
+" sort lines by width
+function! SortLines()
+  '<,'> ! awk '{ print length(), $0 | "sort -n | cut -d\\  -f2-" }'
+endfunction
+
+" select all ts files into args
+function! SelectTS()
+  args `find src -name '*.ts'`
+  bd
+endfunction
+
+" copy co clipboard
+nnoremap <silent>cp :y+<CR>  
+vnoremap <silent>cp "+y<CR>  
+
 " vim-closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.php,*.tsx'
+
+"==============================================================================
+" file navigation
+"==============================================================================
 
 " Telescope
 nnoremap <C-p> :Telescope find_files<CR>
@@ -154,6 +177,10 @@ inoremap jk <ESC>
 nmap <C-n> :call NerdTreeToggleFind()<CR>
 vmap gc <plug>NERDCommenterToggle
 nmap gc <plug>NERDCommenterToggle
+
+"==============================================================================
+" autocomplete
+"==============================================================================
 
 " coc config
 let g:coc_global_extensions = [
@@ -264,7 +291,14 @@ function! ChtSh(lang, query)
   let new_url = 'cheat.sh/' . a:lang . '/' . new_query
   :split
   execute 'term curl ' . new_url 
+  let file_name = new_url . ' - ' . bufnr('%')
+  echo file_name
+  execute 'file ' . file_name
 endfunction
+
+"==============================================================================
+" tests
+"==============================================================================
 
 " janko/vim-test
 nnoremap <silent> tt :TestNearest<CR>
@@ -299,4 +333,3 @@ function! JestStrategy(cmd)
 endfunction
 let g:test#custom_strategies = {'jest': function('JestStrategy')}
 nnoremap <Space>dd :TestNearest -strategy=jest<CR>
-

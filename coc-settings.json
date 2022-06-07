@@ -24,5 +24,6 @@
   "omnisharp.version": "v.1.37.3",
   "omnisharp.trace.server": "information",
   "omnisharp.debug.server": true,
-  "snippets.userSnippetsDirectory": "~/.config/nvim/snips"
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+  "svelte.enable-ts-plugin": true
 }
