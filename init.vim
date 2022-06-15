@@ -15,12 +15,11 @@ set updatetime=300
 set shortmess+=c 
 set signcolumn=yes
 set laststatus=3
-set statusline+=\ %f%m
 set noswapfile
 set noerrorbells
 set incsearch
 set scrolloff=8
-set colorcolumn=80
+set colorcolumn=0
 set termguicolors     
 set guicursor=
 set foldlevel=99
@@ -38,13 +37,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'SmiteshP/nvim-navic'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
@@ -52,21 +52,34 @@ Plug 'ap/vim-css-color'
 Plug 'nvim-lua/plenary.nvim' 
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'OmniSharp/omnisharp-vim'
+" Plug 'OmniSharp/omnisharp-vim'
 Plug 'dense-analysis/ale'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'Mofiqul/vscode.nvim'
+Plug 'overcache/NeoSolarized'
 Plug 'janko/vim-test'
-Plug 'puremourning/vimspector'
+Plug 'christoomey/vim-tmux-navigator'
 " svelte development
 Plug 'evanleck/vim-svelte'
 Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim'
+" debuggin
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'nvim-telescope/telescope-dap.nvim'
+Plug 'Pocco81/DAPInstall.nvim', {'branch': 'dev'}
+" tabs
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
+
+let mapleader = " "
 
 "==============================================================================
 "theme
@@ -81,7 +94,17 @@ let g:vscode_transparency = 1
 let g:vscode_italic_comment = 1
 let g:vscode_disable_nvimtree_bg = v:true
 
-colorscheme ayu
+" neosolarized
+let g:neosolarized_vertSplitBgTrans = 1
+
+" tabs - vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_theme='ayu_mirage'
+
+colorscheme onedark
 
 "==============================================================================
 "configs
@@ -89,17 +112,6 @@ colorscheme ayu
 
 " clean search highlight
 nnoremap <c-x> :noh<CR>
-
-" Moving between panels
-nnoremap <C-h> <C-W>h
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-l> <C-W>l
-
-" sort lines by width
-function! SortLines()
-  '<,'> ! awk '{ print length(), $0 | "sort -n | cut -d\\  -f2-" }'
-endfunction
 
 " select all ts files into args
 function! SelectTS()
@@ -111,6 +123,9 @@ endfunction
 nnoremap <silent>cp :y+<CR>  
 vnoremap <silent>cp "+y<CR>  
 
+" esc
+inoremap jk <ESC>
+
 " vim-closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.php,*.tsx'
 
@@ -120,9 +135,9 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.php,*.tsx'
 
 " Telescope
 nnoremap <C-p> :Telescope find_files<CR>
-nnoremap <Space>fg :Telescope live_grep<CR>
-nnoremap <Space>fb :Telescope buffers<CR>
-nnoremap <Space>fh :Telescope help_tags<CR>
+nnoremap <leader>fg :Telescope live_grep<CR>
+nnoremap <leader>fb :Telescope buffers<CR>
+nnoremap <leader>fh :Telescope help_tags<CR>
 lua << EOF
 require('telescope').setup {
   defaults = {
@@ -141,6 +156,16 @@ lsp_installer.on_server_ready(function(server)
 end)
 EOF
 
+lua << EOF
+local navic = require("nvim-navic")
+
+require("lspconfig").clangd.setup {
+    on_attach = function(client, bufnr)
+        navic.attach(client, bufnr)
+    end
+}
+EOF
+
 " Highlight
 lua << EOF
 require'nvim-treesitter.configs'.setup {
@@ -150,6 +175,9 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
+  },
+  context_commentstring = {
+    enable = true,
   },
 }
 EOF
@@ -173,10 +201,7 @@ function! NerdTreeToggleFind()
     endif
 endfunction
 
-inoremap jk <ESC>
 nmap <C-n> :call NerdTreeToggleFind()<CR>
-vmap gc <plug>NERDCommenterToggle
-nmap gc <plug>NERDCommenterToggle
 
 "==============================================================================
 " autocomplete
@@ -216,19 +241,11 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-nmap <Space>gd :OmniSharpGotoDefinition<CR>
-nmap <Space>gi :OmniSharpFindImplementations<CR>
-nmap <Space>K :OmniSharpDocumentation<CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -245,11 +262,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
-nmap <F2> <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>r <Plug>(coc-rename)
 
 augroup mygroup
   autocmd!
@@ -258,10 +271,6 @@ augroup mygroup
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 vmap ac <Plug>(coc-codeaction)
@@ -279,11 +288,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 " lazygit
-nnoremap <space>m :LazyGit<cr>
+nnoremap <leader>m :LazyGit<cr>
 
 " try to access cht.sh
 function! ChtSh(lang, query)
@@ -308,28 +314,51 @@ nnoremap <silent> t_ :TestLast<CR>
 let test#strategy = 'neovim'
 let test#neovim#term_position = 'vertical'
 
-" puremourning/vimspector
-nnoremap <Space>da :call vimspector#Launch()<CR>
-nnoremap <Space>dx :call vimspector#Reset()<CR>
-nnoremap <Space>k :call vimspector#StepOut()<CR>
-nnoremap <Space>l :call vimspector#StepInto()<CR>
-nnoremap <Space>j :call vimspector#StepOver()<CR>
-nnoremap <Space>d_ :call vimspector#Restart()<CR>
-nnoremap <Space>dn :call vimspector#Continue()<CR>
-nnoremap <Space>drc :call vimspector#RunToCursor()<CR>
-nnoremap <Space>dh :call vimspector#ToggleBreakpoint()<CR>
-nnoremap <Space>de :call vimspector#ToggleConditionalBreakpoint()<CR>
-nnoremap <Space>dX :call vimspector#ClearBreakpoints()<CR>
-func! AddToWatch()
-  let word = expand("<cexpr>")
-  call vimspector#AddWatch(word)
-endfunction
-let g:vimspector_base_dir = expand('$HOME/.config/nvim/vimspector-config')
+"==============================================================================
+" degub
+"==============================================================================
 
-" janko/vim-test and puremourning/vimspector
-function! JestStrategy(cmd)
-  let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
-  call vimspector#LaunchWithSettings( #{ configuration: 'jest', TestName: testName } )
-endfunction
-let g:test#custom_strategies = {'jest': function('JestStrategy')}
-nnoremap <Space>dd :TestNearest -strategy=jest<CR>
+nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<cr>
+nnoremap <leader>do :lua require'dap'.step_over()<cr>
+nnoremap <leader>di :lua require'dap'.step_into()<cr>
+nnoremap <leader>dc :lua require'dap'.continue()<cr>
+nnoremap <leader>dk :lua require'dap'.repl.open()<cr>
+nnoremap <leader>ui :lua require('dapui').toggle()<cr>
+
+lua << EOF
+local dap = require('dap')
+local dapui = require("dapui")
+local dap_install = require("dap-install")
+
+dapui.setup()
+
+dap_install.setup({
+	installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
+})
+dap_install.config('chrome', {})
+
+-- Node Debug
+dap.adapters.node2 = {
+  type = 'executable',
+  command = 'node',
+  args = {os.getenv('HOME') .. '/.config/vscode-node-debug2/out/src/nodeDebug.js'},
+}
+dap.configurations.javascript = {
+  {
+    name = 'Launch',
+    type = 'node2',
+    request = 'launch',
+    program = '${file}',
+    cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = 'inspector',
+    console = 'integratedTerminal',
+  },
+  {
+    name = 'Attach to process',
+    type = 'node2',
+    request = 'attach',
+    port = 9229,
+  },
+}
+EOF
