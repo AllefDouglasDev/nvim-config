@@ -1,6 +1,6 @@
 source <sfile>:h/init/options.vim
 source <sfile>:h/init/plugins.vim
-source <sfile>:h/init/theme.vim
+source <sfile>:h/init/colorscheme.vim
 source <sfile>:h/init/keymaps.vim
 source <sfile>:h/init/telescope.vim
 source <sfile>:h/init/lsp.vim
