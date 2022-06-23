@@ -1,0 +1,27 @@
+set number
+set relativenumber
+set mouse=a
+set smarttab
+set cindent
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set hidden
+set updatetime=300
+set shortmess+=c 
+set signcolumn=yes
+set laststatus=3
+set noswapfile
+set noerrorbells
+set incsearch
+set scrolloff=8
+set colorcolumn=0
+set termguicolors     
+set guicursor=
+set foldlevel=99
+set foldclose=all
+set foldmethod=indent
+set cursorline
+set splitbelow
+set splitright
+
