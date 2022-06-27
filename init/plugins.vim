@@ -22,6 +22,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'moll/vim-bbye'
   Plug 'akinsho/bufferline.nvim'
   Plug 'nvim-lualine/lualine.nvim'
+  Plug 'goolord/alpha-nvim'
 
   " Nerdtree
   Plug 'scrooloose/nerdtree'
@@ -35,7 +36,6 @@ call plug#begin('~/.vim/plugged')
   " Git
   Plug 'kdheepak/lazygit.nvim'
   Plug 'lewis6991/gitsigns.nvim'
-  " Plug 'airblade/vim-gitgutter'
 
   " Tests
   Plug 'janko/vim-test'

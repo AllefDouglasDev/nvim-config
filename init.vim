@@ -12,3 +12,4 @@ source <sfile>:h/init/general.vim
 source <sfile>:h/init/bufferline.vim
 source <sfile>:h/init/lualine.vim
 source <sfile>:h/init/git.vim
+source <sfile>:h/init/dashboard.vim
