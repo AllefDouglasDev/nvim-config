@@ -70,6 +70,8 @@ nmap ac <Plug>(coc-codeaction)
 vmap qf <Plug>(coc-fix-current)
 nmap qf <Plug>(coc-fix-current)
 
+vnoremap <leader>ac <Plug>(coc-codeaction) 
+
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
