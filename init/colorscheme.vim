@@ -17,5 +17,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_theme='ayu_mirage'
 
-set background=light
+" set background=light
+" colorscheme visualstudiocpp
 colorscheme onedark

@@ -13,7 +13,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'
   Plug 'joshdick/onedark.vim'
   Plug 'ayu-theme/ayu-vim'
-  Plug 'Mofiqul/vscode.nvim'
+  " Plug 'Mofiqul/vscode.nvim'
+  Plug 'AllefDouglasDev/visualstudiocpp.nvim'
   " Plug 'overcache/NeoSolarized'
   Plug 'lunarvim/darkplus.nvim'
   " Plug 'sonph/onehalf', { 'rtp': 'vim' }
