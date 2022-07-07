@@ -1,3 +1,4 @@
+"test
 source <sfile>:h/init/options.vim
 source <sfile>:h/init/plugins.vim
 source <sfile>:h/init/colorscheme.vim
