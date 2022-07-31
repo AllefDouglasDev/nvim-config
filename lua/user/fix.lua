@@ -33,7 +33,7 @@ local function do_action(action, client)
     end
 end
 
-function fix() 
+function fix()
     local params = vim.lsp.util.make_range_params() -- get params for current position
     params.context = {
         diagnostics = vim.lsp.diagnostic.get_line_diagnostics(),

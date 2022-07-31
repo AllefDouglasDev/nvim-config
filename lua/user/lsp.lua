@@ -40,9 +40,11 @@ lspconfig.tailwindcss.setup {
 }
 
 local bufopts = { noremap=true, silent=true, buffer=bufnr }
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+vim.keymap.set('n', 'gd', ':Telescope lsp_definitions<CR>', bufopts)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+vim.keymap.set('n', 'gr', ':Telescope lsp_references<CR>', bufopts)
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<leader>x', vim.diagnostic.open_float, bufopts)
+vim.keymap.set('n', '<leader>df', vim.diagnostic.goto_next, bufopts)
 vim.keymap.set('n', 'ac', vim.lsp.buf.code_action, bufopts)
