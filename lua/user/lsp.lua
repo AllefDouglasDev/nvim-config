@@ -1,4 +1,3 @@
-lua << EOF
 local lsp_installer = require("nvim-lsp-installer")
 local lspconfig = require("lspconfig")
 
@@ -47,4 +46,3 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<leader>x', vim.diagnostic.open_float, bufopts)
 vim.keymap.set('n', 'ac', vim.lsp.buf.code_action, bufopts)
-EOF

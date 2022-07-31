@@ -4,9 +4,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'alvan/vim-closetag'
   Plug 'tpope/vim-surround'
   Plug 'ap/vim-css-color'
-  " Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim' 
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'windwp/nvim-autopairs'
   " Plug 'NTBBloodbath/rest.nvim'
 
   " Colorscheme
@@ -17,20 +18,21 @@ call plug#begin('~/.vim/plugged')
   Plug 'AllefDouglasDev/visualstudiocpp.nvim'
   " Plug 'overcache/NeoSolarized'
   Plug 'lunarvim/darkplus.nvim'
+  Plug 'folke/tokyonight.nvim'
   " Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
   " Window Style
   " Plug 'ryanoasis/vim-devicons'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'moll/vim-bbye'
-  " Plug 'akinsho/bufferline.nvim'
-  " Plug 'nvim-lualine/lualine.nvim'
-  " Plug 'goolord/alpha-nvim'
+  Plug 'akinsho/bufferline.nvim'
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'goolord/alpha-nvim'
 
   " Nerdtree
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
-  " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
   " Telescope
   Plug 'nvim-telescope/telescope.nvim'
@@ -52,15 +54,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'williamboman/nvim-lsp-installer'
 
   " Autocomplete
-  Plug 'honza/vim-snippets'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  " Plug 'hrsh7th/cmp-nvim-lsp'
-  " Plug 'hrsh7th/cmp-buffer'
-  " Plug 'hrsh7th/cmp-path'
+  " Plug 'honza/vim-snippets'
+  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-vsnip'
+  Plug 'hrsh7th/vim-vsnip'
   " Plug 'hrsh7th/cmp-cmdline'
-  " Plug 'hrsh7th/nvim-cmp'
-  " Plug 'hrsh7th/cmp-vsnip'
-  " Plug 'hrsh7th/vim-vsnip'
-  " Plug 'jose-elias-alvarez/null-ls.nvim'
+  Plug 'jose-elias-alvarez/null-ls.nvim'
 
 call plug#end()

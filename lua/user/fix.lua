@@ -1,4 +1,3 @@
-lua <<EOF
 local function run_action(action, offse)
     if action.edit or type(action.command) == "table" then
         if action.edit then
@@ -68,9 +67,8 @@ function fix()
 
     print "No quickfixes!"
 end
-EOF
 
-nnoremap qf :lua fix()<CR>
-vnoremap qf :lua fix()<CR>
+local options = { noremap = true, silent = true }
+vim.keymap.set('n', 'qf', ':lua fix()<CR>', options)
+vim.keymap.set('v', 'qf', ':lua fix()<CR>', options)
 
-" autocmd BufWritePre <buffer> lua fix()

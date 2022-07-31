@@ -17,6 +17,12 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_theme='ayu_mirage'
 
+lua << EOF
+vim.g.tokyonight_transparent_sidebar = true
+vim.g.tokyonight_transparent = true
+vim.opt.background = "dark"
+EOF
+
 " set background=light
 " colorscheme visualstudiocpp
-colorscheme onedark
+colorscheme tokyonight

@@ -1,6 +1,7 @@
 set number
 set relativenumber
 set mouse=a
+set nowrap
 set smarttab
 set cindent
 set tabstop=2
@@ -15,7 +16,7 @@ set noswapfile
 set noerrorbells
 set incsearch
 set scrolloff=8
-set colorcolumn=0
+set colorcolumn=80
 set termguicolors     
 set guicursor=
 set foldlevel=99
