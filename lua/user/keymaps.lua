@@ -26,14 +26,8 @@ vim.cmd([[
 
 local options = { noremap = true, silent = true }
 vim.cmd([[ let mapleader = " " ]])
--- clean search highlight
 vim.keymap.set('n', '<C-x>', ':noh<CR>', options)
--- copy co clipboard
-vim.keymap.set('n', 'cp', '"+y<CR>', options)
--- nnoremap <C-w>k :call CloseBuffers()<CR>
 vim.keymap.set('n', '<C-w>k', ':call CloseBuffers()<CR>', options)
--- inoremap jk <ESC>
 vim.keymap.set('i', 'jk', '<ESC>', options)
--- nnoremap <C-w>a :bufdo :Bdelete<CR>
 vim.keymap.set('n', '<C-w>a', ':bufdo :Bdelete<CR>', options)
 

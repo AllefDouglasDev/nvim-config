@@ -29,7 +29,7 @@ local function do_action(action, client)
             end
         end)
     else
-        run_action(action, client.offset_encoding) 
+        run_action(action, client.offset_encoding)
     end
 end
 
@@ -57,12 +57,12 @@ function fix()
     -- we have an action!
     for cid, resp in pairs(results) do
         if resp.result then
-            for _, result in pairs(resp.result) do 
+            for _, result in pairs(resp.result) do
                 -- this is the first action, run it
                 do_action(result, vim.lsp.get_client_by_id(cid))
                 return
             end
-        end 
+        end
     end
 
     print "No quickfixes!"
