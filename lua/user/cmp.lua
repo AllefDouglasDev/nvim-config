@@ -31,7 +31,8 @@ local kind_icons = {
 cmp.setup({
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      require('luasnip').lsp_expand(args.body)
     end,
   },
   window = {
@@ -48,7 +49,7 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'vsnip' },
+    { name = 'luasnip' },
   }, {
     { name = 'buffer' },
   }),
@@ -98,5 +99,11 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 require('lspconfig')['tsserver'].setup {
+  capabilities = capabilities
+}
+require('lspconfig')['php'].setup {
+  capabilities = capabilities
+}
+require('lspconfig')['rust_analyzer'].setup {
   capabilities = capabilities
 }
