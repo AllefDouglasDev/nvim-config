@@ -30,4 +30,7 @@ vim.keymap.set('n', '<C-x>', ':noh<CR>', options)
 vim.keymap.set('n', '<C-w>k', ':call CloseBuffers()<CR>', options)
 vim.keymap.set('i', 'jk', '<ESC>', options)
 vim.keymap.set('n', '<C-w>a', ':bufdo :Bdelete<CR>', options)
-
+vim.keymap.set('n', '<leader>l', ':vertical resize -5<CR>', options)
+vim.keymap.set('n', '<leader>h', ':vertical resize +5<CR>', options)
+vim.keymap.set('n', '<leader>j', ':resize -5<CR>', options)
+vim.keymap.set('n', '<leader>k', ':resize +5<CR>', options)
