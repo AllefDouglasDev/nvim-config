@@ -100,6 +100,9 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 require('lspconfig')['tsserver'].setup {
   capabilities = capabilities
 }
+require('lspconfig')['prismals'].setup {
+  capabilities = capabilities
+}
 require('lspconfig')['rust_analyzer'].setup {
   capabilities = capabilities
 }
