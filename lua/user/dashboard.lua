@@ -21,12 +21,6 @@ dashboard.section.header.val = {
   [[ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║ ]],
   [[  ╚████╔╝  ██║ ██║ ╚═╝ ██║ ]],
   [[   ╚═══╝   ╚═╝ ╚═╝     ╚═╝ ]],
-  -- [[  ]],
-  -- [[    ──▒▒▒▒▒▒───▄████▄ ]],
-  -- [[    ─▒─▄▒─▄▒──███▄█▀ ]],
-  -- [[    ─▒▒▒▒▒▒▒─▐████──█─█ ]],
-  -- [[    ─▒▒▒▒▒▒▒──█████▄ ]],
-  -- [[    ─▒─▒─▒─▒───▀████▀ ]],
 }
 
 dashboard.section.buttons.val = {
@@ -39,6 +33,7 @@ dashboard.section.buttons.val = {
 }
 
 local function footer()
+  vim.cmd([[ :file Alpha ]])
 	return "Allef Douglas"
 end
 

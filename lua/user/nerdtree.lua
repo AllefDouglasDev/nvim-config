@@ -4,6 +4,9 @@ vim.cmd([[ let g:NERDTreeShowHidden = 1 ]])
 
 vim.cmd([[ 
   function! NerdTreeToggleFind()
+      if bufname('') == 'Alpha'
+        Alpha
+      endif
       if exists("g:NERDTree") && g:NERDTree.IsOpen()
           NERDTreeClose
       elseif filereadable(expand('%'))
