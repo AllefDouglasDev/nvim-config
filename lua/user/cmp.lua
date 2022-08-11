@@ -31,7 +31,6 @@ local kind_icons = {
 cmp.setup({
   snippet = {
     expand = function(args)
-      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       require('luasnip').lsp_expand(args.body)
     end,
   },
@@ -101,9 +100,33 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 require('lspconfig')['tsserver'].setup {
   capabilities = capabilities
 }
-require('lspconfig')['php'].setup {
-  capabilities = capabilities
-}
 require('lspconfig')['rust_analyzer'].setup {
   capabilities = capabilities
 }
+require('lspconfig')['tailwindcss'].setup {
+  capabilities = capabilities,
+  settings = {
+    tailwindCSS = {
+      lint = {
+        cssConflict = "warning",
+        invalidApply = "error",
+        invalidConfigPath = "error",
+        invalidScreen = "error",
+        invalidTailwindDirective = "error",
+        invalidVariant = "error",
+        recommendedVariantOrder = "warning"
+      },
+      experimental = {
+        classRegex = {
+          "tw`([^`]*)",
+          "tw=\"([^\"]*)",
+          "tw={\"([^\"}]*)",
+          "tw\\.\\w+`([^`]*)",
+          "tw\\(.*?\\)`([^`]*)"
+        }
+      },
+      validate = true
+    }
+  }
+}
+

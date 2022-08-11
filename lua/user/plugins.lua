@@ -5,6 +5,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- General
+  use 'lewis6991/impatient.nvim'
   use 'tpope/vim-commentary'
   use 'alvan/vim-closetag'
   use 'tpope/vim-surround'
@@ -13,7 +14,10 @@ return require('packer').startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use 'christoomey/vim-tmux-navigator'
   use 'windwp/nvim-autopairs'
+  use 'windwp/nvim-ts-autotag'
   use 'NTBBloodbath/rest.nvim'
+  use 'junegunn/goyo.vim'
+  use 'junegunn/limelight.vim'
 
   -- Colorscheme
   use 'morhetz/gruvbox'
@@ -39,6 +43,7 @@ return require('packer').startup(function(use)
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
+  use 'nvim-telescope/telescope-file-browser.nvim'
   use {
       'nvim-telescope/telescope-fzf-native.nvim',
       run = 'make'
@@ -61,6 +66,9 @@ return require('packer').startup(function(use)
   -- LSP
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
+  use 'glepnir/lspsaga.nvim'
+  -- use 'williamboman/mason.nvim'
+  -- use 'williamboman/mason-lspconfig.nvim'
 
   -- Autocomplete
   use 'hrsh7th/nvim-cmp'
@@ -69,5 +77,7 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
+  use 'rafamadriz/friendly-snippets'
   use 'jose-elias-alvarez/null-ls.nvim'
+  use 'MunifTanjim/prettier.nvim'
 end)

@@ -1,11 +1,16 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "rust" },
-  sync_install = false,
-  ignore_install = { "" },
-  -- highlight = {
-  --   enable = true,
-  --   additional_vim_regex_highlighting = false,
-  -- },
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+  indent = {
+    enable = true,
+    disable = {},
+  },
+  ensure_installed = { 'tsx', 'lua', 'json', 'css' },
+  autotag = {
+    enable = true,
+  },
   context_commentstring = {
     enable = true,
   },
