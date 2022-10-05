@@ -9,7 +9,7 @@ lsp_installer.on_server_ready(function(server)
 ---@diagnostic disable-next-line: unused-local
       on_attach = function(client, bufnr)
         if client.name == "tsserver" then
-          client.resolved_capabilities.document_formatting = false
+          client.server_capabilities.document_formatting = false
         end
       end
     }

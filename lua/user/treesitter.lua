@@ -34,32 +34,3 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
--- local autocomplete_twin_macro = function()
---   print('called')
---   local css_expression = vim.treesitter.parse_query(
---     "typescript",
---     [[
--- (call_expression
---   function: (identifier) @func (#eq? @func "tw")
---   arguments: (template_string) @args
--- ) @call
--- ]]
---   )
---   local parser = vim.treesitter.get_parser(0, "typescript")
---   local root = parser:parse()[1]:root()
---   local bufnr = vim.api.nvim_get_current_buf()
---   for id, node in css_expression:iter_captures(root, bufnr, 0, -1) do
---     local name = css_expression.captures[id]
---     if name == "args" then
---       -- local range = { node:range() }  
---       local content = vim.treesitter.get_node_text(node, bufnr)
---       print(content)
---       vim.lsp.buf_notify(bufnr, '', )
---     end
---   end
--- end
-
--- local options = { noremap = true, silent = true }
--- vim.keymap.set('n', '<leader>.', autocomplete_twin_macro, options)
--- vim.keymap.set('i', '<C-e>', autocomplete_twin_macro, options)
-

@@ -37,11 +37,15 @@ return require('packer').startup(function(use)
   use 'akinsho/bufferline.nvim'
   use 'nvim-lualine/lualine.nvim'
   use 'goolord/alpha-nvim'
+  use 'karb94/neoscroll.nvim'
 
-  -- Nerdtree
-  use 'scrooloose/nerdtree'
-  use 'Xuyuanp/nerdtree-git-plugin'
-  use 'tiagofumo/vim-nerdtree-syntax-highlight'
+  -- Tree
+  use 'kyazdani42/nvim-tree.lua'
+
+  -- -- Nerdtree
+  -- use 'scrooloose/nerdtree'
+  -- use 'Xuyuanp/nerdtree-git-plugin'
+  -- use 'tiagofumo/vim-nerdtree-syntax-highlight'
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
