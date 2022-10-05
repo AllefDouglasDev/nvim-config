@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
     url = "https://github.com/lunarvim/darkplus.nvim"
   },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -129,10 +134,30 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/morhetz/gruvbox"
   },
+  harpoon = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
+  },
+  ["impatient.nvim"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/impatient.nvim",
+    url = "https://github.com/lewis6991/impatient.nvim"
+  },
   ["lazygit.nvim"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
     url = "https://github.com/kdheepak/lazygit.nvim"
+  },
+  ["limelight.vim"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/limelight.vim",
+    url = "https://github.com/junegunn/limelight.vim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
+    url = "https://github.com/glepnir/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -179,6 +204,11 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    url = "https://github.com/windwp/nvim-ts-autotag"
+  },
   ["nvim-ts-context-commentstring"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
@@ -199,6 +229,11 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  playground = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/playground",
+    url = "https://github.com/nvim-treesitter/playground"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -209,10 +244,20 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["prettier.nvim"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/prettier.nvim",
+    url = "https://github.com/MunifTanjim/prettier.nvim"
+  },
   ["rest.nvim"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/rest.nvim",
     url = "https://github.com/NTBBloodbath/rest.nvim"
+  },
+  ["telescope-file-browser.nvim"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
+    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
@@ -268,6 +313,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/vim-test",
     url = "https://github.com/janko/vim-test"
+  },
+  ["vim-titlecase"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/vim-titlecase",
+    url = "https://github.com/christoomey/vim-titlecase"
   },
   ["vim-tmux-navigator"] = {
     loaded = true,

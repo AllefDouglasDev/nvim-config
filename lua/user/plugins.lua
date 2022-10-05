@@ -18,6 +18,8 @@ return require('packer').startup(function(use)
   use 'NTBBloodbath/rest.nvim'
   use 'junegunn/goyo.vim'
   use 'junegunn/limelight.vim'
+  use 'christoomey/vim-titlecase'
+  use 'ThePrimeagen/harpoon'
 
   -- Colorscheme
   use 'morhetz/gruvbox'
@@ -61,14 +63,13 @@ return require('packer').startup(function(use)
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate'
   }
+  use 'nvim-treesitter/playground'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- LSP
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
   use 'glepnir/lspsaga.nvim'
-  -- use 'williamboman/mason.nvim'
-  -- use 'williamboman/mason-lspconfig.nvim'
 
   -- Autocomplete
   use 'hrsh7th/nvim-cmp'

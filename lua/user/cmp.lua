@@ -106,6 +106,9 @@ require('lspconfig')['prismals'].setup {
 require('lspconfig')['rust_analyzer'].setup {
   capabilities = capabilities
 }
+require('lspconfig')['cssls'].setup {
+  capabilities = capabilities
+}
 require('lspconfig')['tailwindcss'].setup {
   capabilities = capabilities,
   settings = {
