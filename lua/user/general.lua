@@ -7,3 +7,5 @@ vim.cmd([[
   let g:limelight_conceal_ctermfg = 100
   let g:limelight_conceal_guifg = '#777777'
 ]])
+
+require 'colorizer'.setup()

@@ -15,20 +15,26 @@ return require('packer').startup(function(use)
   use 'christoomey/vim-tmux-navigator'
   use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'
-  use 'NTBBloodbath/rest.nvim'
   use 'junegunn/goyo.vim'
   use 'junegunn/limelight.vim'
   use 'christoomey/vim-titlecase'
   use 'ThePrimeagen/harpoon'
 
+  -- Tailwind
+  use 'roobert/tailwindcss-colorizer-cmp.nvim'
+  use 'NvChad/nvim-colorizer.lua'
+
   -- Colorscheme
-  use 'morhetz/gruvbox'
+  -- use 'morhetz/gruvbox'
+  use 'ellisonleao/gruvbox.nvim'
   use 'joshdick/onedark.vim'
   use 'ayu-theme/ayu-vim'
   use 'Mofiqul/vscode.nvim'
   use 'AllefDouglasDev/visualstudiocpp.nvim'
   use 'lunarvim/darkplus.nvim'
   use 'folke/tokyonight.nvim'
+  use 'wuelnerdotexe/vim-enfocado'
+  use 'tomasr/molokai'
 
   -- Window Style
   use 'ryanoasis/vim-devicons'
@@ -41,11 +47,6 @@ return require('packer').startup(function(use)
 
   -- Tree
   use 'kyazdani42/nvim-tree.lua'
-
-  -- -- Nerdtree
-  -- use 'scrooloose/nerdtree'
-  -- use 'Xuyuanp/nerdtree-git-plugin'
-  -- use 'tiagofumo/vim-nerdtree-syntax-highlight'
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'

@@ -134,10 +134,10 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/goyo.vim",
     url = "https://github.com/junegunn/goyo.vim"
   },
-  gruvbox = {
+  ["gruvbox.nvim"] = {
     loaded = true,
-    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/gruvbox",
-    url = "https://github.com/morhetz/gruvbox"
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
+    url = "https://github.com/ellisonleao/gruvbox.nvim"
   },
   harpoon = {
     loaded = true,
@@ -168,6 +168,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  molokai = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/molokai",
+    url = "https://github.com/tomasr/molokai"
   },
   ["neoscroll.nvim"] = {
     loaded = true,
@@ -254,11 +259,6 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/prettier.nvim",
     url = "https://github.com/MunifTanjim/prettier.nvim"
   },
-  ["rest.nvim"] = {
-    loaded = true,
-    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/rest.nvim",
-    url = "https://github.com/NTBBloodbath/rest.nvim"
-  },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
@@ -303,6 +303,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/vim-devicons",
     url = "https://github.com/ryanoasis/vim-devicons"
+  },
+  ["vim-enfocado"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/vim-enfocado",
+    url = "https://github.com/wuelnerdotexe/vim-enfocado"
   },
   ["vim-surround"] = {
     loaded = true,

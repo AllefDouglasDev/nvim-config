@@ -1,5 +1,14 @@
 local cmp = require'cmp'
 
+local luasnip_status, luasnip = pcall(require, "luasnip")
+if not luasnip_status then
+  return
+end
+
+require("luasnip/loaders/from_vscode").lazy_load()
+
+vim.opt.completeopt = "menu,menuone,noselect"
+
 local kind_icons = {
   Text = "",
   Method = "m",
@@ -31,7 +40,7 @@ local kind_icons = {
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   window = {
@@ -49,6 +58,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'path' },
   }, {
     { name = 'buffer' },
   }),
@@ -95,7 +105,7 @@ cmp.setup.cmdline(':', {
 })
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 require('lspconfig')['tsserver'].setup {
   capabilities = capabilities
@@ -109,6 +119,10 @@ require('lspconfig')['rust_analyzer'].setup {
 require('lspconfig')['cssls'].setup {
   capabilities = capabilities
 }
+-- require('lspconfig')['omnisharp'].setup {
+--   capabilities = capabilities,
+--   single_file_support = true
+-- }
 require('lspconfig')['tailwindcss'].setup {
   capabilities = capabilities,
   settings = {
@@ -135,4 +149,8 @@ require('lspconfig')['tailwindcss'].setup {
     }
   }
 }
+
+require("tailwindcss-colorizer-cmp").setup({
+  color_square_width = 2,
+})
 

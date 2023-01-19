@@ -16,6 +16,7 @@ nvim_tree.setup {
     update_cwd = true,
   },
   renderer = {
+    group_empty = true,
     root_folder_modifier = ":t",
     icons = {
       glyphs = {
@@ -54,7 +55,7 @@ nvim_tree.setup {
     },
   },
   view = {
-    width = 30,
+    width = 35,
     -- height = 30,
     side = "left",
     mappings = {
