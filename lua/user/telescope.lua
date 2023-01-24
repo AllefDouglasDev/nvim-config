@@ -39,10 +39,12 @@ telescope.setup {
 
 telescope.load_extension('fzf')
 telescope.load_extension('file_browser')
+telescope.load_extension("ui-select")
 
 local options = { noremap = true, silent = true }
 vim.keymap.set('n', '<C-p>', '<Cmd>lua require("telescope.builtin").find_files({ no_ignore = false, hidden = true })<CR>', options)
 vim.keymap.set('n', '<leader>fg', '<Cmd>Telescope live_grep<CR>', options)
 vim.keymap.set('n', '<leader>fb', '<Cmd>Telescope buffers<CR>', options)
 vim.keymap.set('n', '<leader>fh', '<Cmd>Telescope help_tags<CR>', options)
+vim.keymap.set('n', '<leader>fq', '<Cmd>Telescope quickfix<CR>', options)
 vim.keymap.set('n', '<leader>ff', '<Cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", cwd = Telescope_buffer_dir(), respoect_git_ignore = false, hidden = true, grouped = true, initial_mode = "normal" })<CR>', options)

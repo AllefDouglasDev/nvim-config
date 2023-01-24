@@ -194,6 +194,11 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/NvChad/nvim-colorizer.lua"
+  },
   ["nvim-lsp-installer"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
@@ -259,6 +264,11 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/prettier.nvim",
     url = "https://github.com/MunifTanjim/prettier.nvim"
   },
+  ["tailwindcss-colorizer-cmp.nvim"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/tailwindcss-colorizer-cmp.nvim",
+    url = "https://github.com/roobert/tailwindcss-colorizer-cmp.nvim"
+  },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
@@ -268,6 +278,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+  },
+  ["telescope-ui-select.nvim"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/telescope-ui-select.nvim",
+    url = "https://github.com/nvim-telescope/telescope-ui-select.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -308,6 +323,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/vim-enfocado",
     url = "https://github.com/wuelnerdotexe/vim-enfocado"
+  },
+  ["vim-styled-components"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/vim-styled-components",
+    url = "https://github.com/styled-components/vim-styled-components"
   },
   ["vim-surround"] = {
     loaded = true,

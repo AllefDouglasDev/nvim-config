@@ -106,24 +106,21 @@ cmp.setup.cmdline(':', {
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local nvim_lsp = require('lspconfig')
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require('lspconfig')['tsserver'].setup {
+nvim_lsp.tsserver.setup {
   capabilities = capabilities
 }
-require('lspconfig')['prismals'].setup {
+nvim_lsp.prismals.setup {
   capabilities = capabilities
 }
-require('lspconfig')['rust_analyzer'].setup {
+nvim_lsp.rust_analyzer.setup {
   capabilities = capabilities
 }
-require('lspconfig')['cssls'].setup {
+nvim_lsp.cssls.setup {
   capabilities = capabilities
 }
--- require('lspconfig')['omnisharp'].setup {
---   capabilities = capabilities,
---   single_file_support = true
--- }
-require('lspconfig')['tailwindcss'].setup {
+nvim_lsp.tailwindcss.setup {
   capabilities = capabilities,
   settings = {
     tailwindCSS = {
@@ -138,19 +135,21 @@ require('lspconfig')['tailwindcss'].setup {
       },
       experimental = {
         classRegex = {
-          "tw`([^`]*)",
-          "tw=\"([^\"]*)",
-          "tw={\"([^\"}]*)",
-          "tw\\.\\w+`([^`]*)",
-          "tw\\(.*?\\)`([^`]*)"
+          'tw([^])',
+          'tw="([^"])',
+          'tw={"([^"}])',
+          'tw\\.\\w+([^])',
+          'tw\\(.?\\)([^])',
         }
       },
       validate = true
     }
   }
 }
-
 require("tailwindcss-colorizer-cmp").setup({
   color_square_width = 2,
 })
+require("cmp").config.formatting = {
+  format = require("tailwindcss-colorizer-cmp").formatter
+}
 

@@ -19,6 +19,7 @@ return require('packer').startup(function(use)
   use 'junegunn/limelight.vim'
   use 'christoomey/vim-titlecase'
   use 'ThePrimeagen/harpoon'
+  use 'eandrju/cellular-automaton.nvim'
 
   -- Tailwind
   use 'roobert/tailwindcss-colorizer-cmp.nvim'
@@ -55,6 +56,7 @@ return require('packer').startup(function(use)
       'nvim-telescope/telescope-fzf-native.nvim',
       run = 'make'
   }
+  use 'nvim-telescope/telescope-ui-select.nvim'
 
   -- Git
   use 'kdheepak/lazygit.nvim'
@@ -76,6 +78,11 @@ return require('packer').startup(function(use)
   use 'williamboman/nvim-lsp-installer'
   use 'glepnir/lspsaga.nvim'
 
+  -- use({
+  --   "glepnir/lspsaga.nvim",
+  --   branch = "main",
+  -- })
+
   -- Autocomplete
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -86,4 +93,5 @@ return require('packer').startup(function(use)
   use 'rafamadriz/friendly-snippets'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'MunifTanjim/prettier.nvim'
+  use 'styled-components/vim-styled-components'
 end)

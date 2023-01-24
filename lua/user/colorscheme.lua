@@ -40,4 +40,4 @@ require("gruvbox").setup({
   transparent_mode = false,
 })
 
-vim.cmd([[ colorscheme tokyonight-night ]])
+vim.cmd([[ colorscheme habamax ]])
