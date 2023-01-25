@@ -33,6 +33,7 @@ local function do_action(action, client)
     end
 end
 
+---@diagnostic disable-next-line: lowercase-global
 function fix()
     local params = vim.lsp.util.make_range_params() -- get params for current position
     params.context = {
