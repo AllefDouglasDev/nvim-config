@@ -24,6 +24,13 @@ return require('packer').startup(function(use)
   -- Tailwind
   use 'roobert/tailwindcss-colorizer-cmp.nvim'
   use 'NvChad/nvim-colorizer.lua'
+  use {
+    'themaxmarchuk/tailwindcss-colors.nvim',
+    module = 'tailwindcss-colors',
+    config = function ()
+      require("tailwindcss-colors").setup()
+    end
+  }
 
   -- Colorscheme
   -- use 'morhetz/gruvbox'
@@ -76,12 +83,6 @@ return require('packer').startup(function(use)
   -- LSP
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
-  use 'glepnir/lspsaga.nvim'
-
-  -- use({
-  --   "glepnir/lspsaga.nvim",
-  --   branch = "main",
-  -- })
 
   -- Autocomplete
   use 'hrsh7th/nvim-cmp'
