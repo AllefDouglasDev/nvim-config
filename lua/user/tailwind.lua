@@ -4,6 +4,8 @@ local on_attach = function(client, bufnr)
   require("tailwindcss-colors").buf_attach(bufnr)
 end
 
+print(lsp.tailwindcss)
+
 lsp.tailwindcss.setup{
   settings = {
     scss = { validate = false },
@@ -12,6 +14,15 @@ lsp.tailwindcss.setup{
       autoClosingQuotes = 'always',
     },
     tailwindCSS = {
+      lint = {
+        cssConflict = "warning",
+        invalidApply = "error",
+        invalidConfigPath = "error",
+        invalidScreen = "error",
+        invalidTailwindDirective = "error",
+        invalidVariant = "error",
+        recommendedVariantOrder = "warning"
+      },
       experimental = {
         classRegex = {
           'tw`([^`]*)', -- tw`...`

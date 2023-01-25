@@ -113,7 +113,9 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local nvim_lsp = require('lspconfig')
 nvim_lsp.tsserver.setup {
-  capabilities = capabilities
+  capabilities = capabilities,
+  filetypes = { "javascript", "typescript", "typescriptreact", "typescript.tsx" },
+  root_dir = function() return vim.loop.cwd() end,
 }
 nvim_lsp.prismals.setup {
   capabilities = capabilities
