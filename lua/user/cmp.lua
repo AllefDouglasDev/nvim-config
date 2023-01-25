@@ -44,8 +44,13 @@ cmp.setup({
     end,
   },
   window = {
+    completion = { -- rounded border; thin-style scrollbar
+      border = 'rounded',
+      scrollbar = '║',
+    },
     documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      border = 'rounded',
+      scrollbar = '',
     },
   },
   mapping = cmp.mapping.preset.insert({
@@ -67,10 +72,10 @@ cmp.setup({
     format = function(entry, vim_item)
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        luasnip = "[Snippet]",
-        buffer = "[Buffer]",
-        path = "[Path]",
+        nvim_lsp = "(LSP)",
+        luasnip = "(Snippet)",
+        buffer = "(Buffer)",
+        path = "(Path)",
       })[entry.source.name]
       return vim_item
     end,
