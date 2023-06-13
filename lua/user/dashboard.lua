@@ -24,7 +24,7 @@ dashboard.section.header.val = {
 }
 
 dashboard.section.buttons.val = {
-	dashboard.button("f", "  Find file", '<Cmd>lua require("telescope.builtin").find_files({ no_ignore = false, hidden = true })<CR>'),
+	dashboard.button("f", "  Find file", '<Cmd>lua require("telescope.builtin").find_files({ no_ignore = false, hidden = true, previewer = false })<CR>'),
 	dashboard.button("e", "  New file", ":ene <CR>"),
 	dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
 	dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),

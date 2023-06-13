@@ -94,10 +94,10 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
-  ["cellular-automaton.nvim"] = {
+  catppuccin = {
     loaded = true,
-    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/cellular-automaton.nvim",
-    url = "https://github.com/eandrju/cellular-automaton.nvim"
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -119,6 +119,12 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["codeium.vim"] = {
+    config = { "\27LJ\2\n-\0\0\2\0\3\0\0046\0\0\0009\0\1\0009\0\2\0D\0\1\0\19codeium#Accept\afn\bvim;\0\0\3\0\3\0\0056\0\0\0009\0\1\0009\0\2\0)\2\1\0D\0\2\0\29codeium#CycleCompletions\afn\bvim;\0\0\3\0\3\0\0056\0\0\0009\0\1\0009\0\2\0)\2ÿÿD\0\2\0\29codeium#CycleCompletions\afn\bvim,\0\0\2\0\3\0\0046\0\0\0009\0\1\0009\0\2\0D\0\1\0\18codeium#Clear\afn\bvimÜ\1\1\0\6\0\16\0!6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\a\0003\4\b\0005\5\t\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\n\0003\4\v\0005\5\f\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\r\0003\4\14\0005\5\15\0B\0\5\1K\0\1\0\1\0\1\texpr\2\0\n<c-x>\1\0\1\texpr\2\0\n<c-,>\1\0\1\texpr\2\0\n<c-;>\1\0\1\texpr\2\0\n<C-g>\6i\bset\vkeymap\bvim\0" },
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/codeium.vim",
+    url = "https://github.com/Exafunction/codeium.vim"
+  },
   ["darkplus.nvim"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
@@ -133,11 +139,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
-  },
-  ["goyo.vim"] = {
-    loaded = true,
-    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/goyo.vim",
-    url = "https://github.com/junegunn/goyo.vim"
   },
   ["gruvbox.nvim"] = {
     loaded = true,
@@ -159,11 +160,6 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
     url = "https://github.com/kdheepak/lazygit.nvim"
   },
-  ["limelight.vim"] = {
-    loaded = true,
-    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/limelight.vim",
-    url = "https://github.com/junegunn/limelight.vim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -173,6 +169,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/molokai",
     url = "https://github.com/tomasr/molokai"
+  },
+  ["moonlight.nvim"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/moonlight.nvim",
+    url = "https://github.com/shaunsingh/moonlight.nvim"
   },
   ["neoscroll.nvim"] = {
     loaded = true,
@@ -244,11 +245,6 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  playground = {
-    loaded = true,
-    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/playground",
-    url = "https://github.com/nvim-treesitter/playground"
-  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -302,6 +298,11 @@ _G.packer_plugins = {
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ["vim-aylin"] = {
+    loaded = true,
+    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/vim-aylin",
+    url = "https://github.com/AhmedAbdulrahman/vim-aylin"
+  },
   ["vim-bbye"] = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/vim-bbye",
@@ -346,11 +347,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/allef/.local/share/nvim/site/pack/packer/start/vim-test",
     url = "https://github.com/janko/vim-test"
-  },
-  ["vim-titlecase"] = {
-    loaded = true,
-    path = "/Users/allef/.local/share/nvim/site/pack/packer/start/vim-titlecase",
-    url = "https://github.com/christoomey/vim-titlecase"
   },
   ["vim-tmux-navigator"] = {
     loaded = true,
@@ -398,6 +394,10 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
+-- Config for: codeium.vim
+time([[Config for codeium.vim]], true)
+try_loadstring("\27LJ\2\n-\0\0\2\0\3\0\0046\0\0\0009\0\1\0009\0\2\0D\0\1\0\19codeium#Accept\afn\bvim;\0\0\3\0\3\0\0056\0\0\0009\0\1\0009\0\2\0)\2\1\0D\0\2\0\29codeium#CycleCompletions\afn\bvim;\0\0\3\0\3\0\0056\0\0\0009\0\1\0009\0\2\0)\2ÿÿD\0\2\0\29codeium#CycleCompletions\afn\bvim,\0\0\2\0\3\0\0046\0\0\0009\0\1\0009\0\2\0D\0\1\0\18codeium#Clear\afn\bvimÜ\1\1\0\6\0\16\0!6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\a\0003\4\b\0005\5\t\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\n\0003\4\v\0005\5\f\0B\0\5\0016\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\r\0003\4\14\0005\5\15\0B\0\5\1K\0\1\0\1\0\1\texpr\2\0\n<c-x>\1\0\1\texpr\2\0\n<c-,>\1\0\1\texpr\2\0\n<c-;>\1\0\1\texpr\2\0\n<C-g>\6i\bset\vkeymap\bvim\0", "config", "codeium.vim")
+time([[Config for codeium.vim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

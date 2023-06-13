@@ -54,7 +54,7 @@ vim.keymap.set("n", "<leader>rt", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<leader>x', vim.diagnostic.open_float, bufopts)
-vim.keymap.set('n', '<leader>p', vim.lsp.buf.signature_help, bufopts)
+vim.keymap.set('n', '<leader>sh', vim.lsp.buf.signature_help, bufopts)
 vim.keymap.set('n', '<leader>df', vim.diagnostic.goto_next, bufopts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, bufopts)
 vim.keymap.set('n', 'ac', vim.lsp.buf.code_action, bufopts)

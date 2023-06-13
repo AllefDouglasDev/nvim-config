@@ -1,4 +1,5 @@
 vim.cmd [[packadd packer.nvim]]
+vim.env.OPENAI_API_KEY = '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'
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
@@ -15,11 +16,7 @@ return require('packer').startup(function(use)
   use 'christoomey/vim-tmux-navigator'
   use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'
-  use 'junegunn/goyo.vim'
-  use 'junegunn/limelight.vim'
-  use 'christoomey/vim-titlecase'
   use 'ThePrimeagen/harpoon'
-  use 'eandrju/cellular-automaton.nvim'
 
   -- Tailwind
   use 'roobert/tailwindcss-colorizer-cmp.nvim'
@@ -43,6 +40,11 @@ return require('packer').startup(function(use)
   use 'folke/tokyonight.nvim'
   use 'wuelnerdotexe/vim-enfocado'
   use 'tomasr/molokai'
+  use 'AhmedAbdulrahman/vim-aylin'
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use 'shaunsingh/moonlight.nvim'
+
+  use 'rest-nvim/rest.nvim'
 
   -- Window Style
   use 'ryanoasis/vim-devicons'
@@ -77,8 +79,8 @@ return require('packer').startup(function(use)
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate'
   }
-  use 'nvim-treesitter/playground'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   -- LSP
   use 'neovim/nvim-lspconfig'
@@ -95,4 +97,15 @@ return require('packer').startup(function(use)
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'MunifTanjim/prettier.nvim'
   use 'styled-components/vim-styled-components'
+
+  use {
+    'Exafunction/codeium.vim',
+    config = function ()
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+      vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+      vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+    end
+  }
 end)
