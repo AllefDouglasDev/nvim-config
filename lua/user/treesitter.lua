@@ -7,7 +7,18 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     disable = {},
   },
-  ensure_installed = { 'tsx', 'lua', 'json', 'css' },
+  ensure_installed = { 
+    'css',
+    'http',
+    'json',
+    'lua',
+    'prisma',
+    'query',
+    'rust',
+    'toml',
+    'tsx',
+    'typescript'
+  },
   autotag = {
     enable = true,
   },
