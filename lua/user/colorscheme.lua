@@ -38,3 +38,4 @@ require("gruvbox").setup({
 vim.opt.background = "dark"
 vim.cmd([[ colorscheme catppuccin ]])
 -- vim.cmd([[ colorscheme moonlight ]])
+-- vim.cmd([[ colorscheme gruvbox ]])

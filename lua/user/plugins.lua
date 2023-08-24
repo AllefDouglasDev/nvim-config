@@ -24,23 +24,13 @@ return require('packer').startup(function(use)
   use {
     'themaxmarchuk/tailwindcss-colors.nvim',
     module = 'tailwindcss-colors',
-    config = function ()
-      require("tailwindcss-colors").setup()
-    end
   }
 
   -- Colorscheme
-  -- use 'morhetz/gruvbox'
   use 'ellisonleao/gruvbox.nvim'
   use 'joshdick/onedark.vim'
-  use 'ayu-theme/ayu-vim'
   use 'Mofiqul/vscode.nvim'
-  use 'AllefDouglasDev/visualstudiocpp.nvim'
-  use 'lunarvim/darkplus.nvim'
   use 'folke/tokyonight.nvim'
-  use 'wuelnerdotexe/vim-enfocado'
-  use 'tomasr/molokai'
-  use 'AhmedAbdulrahman/vim-aylin'
   use { "catppuccin/nvim", as = "catppuccin" }
   use 'shaunsingh/moonlight.nvim'
 
@@ -49,14 +39,14 @@ return require('packer').startup(function(use)
   -- Window Style
   use 'ryanoasis/vim-devicons'
   use 'kyazdani42/nvim-web-devicons'
-  use 'moll/vim-bbye'
-  use 'akinsho/bufferline.nvim'
-  use 'nvim-lualine/lualine.nvim'
-  use 'goolord/alpha-nvim'
-  use 'karb94/neoscroll.nvim'
+  -- use 'moll/vim-bbye'
+  -- use 'akinsho/bufferline.nvim'
+  -- use 'nvim-lualine/lualine.nvim'
+  -- use 'goolord/alpha-nvim'
+  -- use 'karb94/neoscroll.nvim'
 
   -- Tree
-  use 'kyazdani42/nvim-tree.lua'
+  use 'nvim-tree/nvim-tree.lua'
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
@@ -72,7 +62,7 @@ return require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   -- Tests
-  use 'janko/vim-test'
+  -- use 'janko/vim-test'
 
   -- Treesitter
   use {
@@ -98,14 +88,23 @@ return require('packer').startup(function(use)
   use 'MunifTanjim/prettier.nvim'
   use 'styled-components/vim-styled-components'
 
+  -- DAP
+  -- use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  -- use 'theHamsta/nvim-dap-virtual-text'
+  -- use 'leoluz/nvim-dap-go'
+
+  -- AI Completion
   use {
     'Exafunction/codeium.vim',
     config = function ()
       -- Change '<C-g>' here to any keycode you like.
       vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-      vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-      vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-      vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+      vim.keymap.set('i', '<C-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      vim.keymap.set('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+      vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
     end
   }
+
+  -- Obsidian
+  use 'epwalsh/obsidian.nvim'
 end)

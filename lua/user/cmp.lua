@@ -77,7 +77,8 @@ cmp.setup({
         buffer = "(Buffer)",
         path = "(Path)",
       })[entry.source.name]
-      return vim_item
+      return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
+      -- return vim_item
     end,
   },
 })
@@ -99,16 +100,6 @@ cmp.setup.cmdline('/', {
   }
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline(':', {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = cmp.config.sources({
---     { name = 'path' }
---   }, {
---     { name = 'cmdline' }
---   })
--- })
-
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local nvim_lsp = require('lspconfig')
@@ -127,6 +118,9 @@ nvim_lsp.cssls.setup {
   capabilities = capabilities
 }
 nvim_lsp.csharp_ls.setup {
+  capabilities = capabilities
+}
+nvim_lsp.gopls.setup {
   capabilities = capabilities
 }
 

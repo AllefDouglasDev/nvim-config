@@ -4,18 +4,6 @@ local lspconfig = require("lspconfig")
 lspconfig.setup = {}
 lsp_installer.setup{}
 
---lsp_installer.on_server_ready(function(server)
---    local opts = {
---      ---@diagnostic disable-next-line: unused-local
---      on_attach = function(client, bufnr)
---        if client.name == "tsserver" then
---          client.server_capabilities.document_formatting = false
---        end
---      end
---    }
---    server:setup(opts)
---end)
-
 -- Configuring borders
 vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
 vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]

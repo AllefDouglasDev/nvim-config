@@ -1,10 +1,18 @@
-local lsp = require ("lspconfig")
+local lsp = require("lspconfig")
+local colorizer = require("colorizer") 
+local tailwindCssColors = require("tailwindcss-colors")
+
+colorizer.setup({
+  user_default_options = {
+    mode = "virtualtext",
+    virtualtext = "■",
+    tailwind = true,
+  }
+})
 
 local on_attach = function(client, bufnr)
-  require("tailwindcss-colors").buf_attach(bufnr)
+  tailwindCssColors.buf_attach(bufnr)
 end
-
-print(lsp.tailwindcss)
 
 lsp.tailwindcss.setup{
   settings = {
@@ -30,6 +38,8 @@ lsp.tailwindcss.setup{
           'tw={"([^"}]*)', -- <div tw={"..."} />
           'tw\\.\\w+`([^`]*)', -- tw.xxx`...`
           'tw\\(.*?\\)`([^`]*)', -- tw(Component)`...`
+          "cva\\(([^)]*)\\)",
+          "[\"'`]([^\"'`]*).*?[\"'`]",
         },
       },
       includeLanguages = {
@@ -44,8 +54,4 @@ lsp.tailwindcss.setup{
 require("tailwindcss-colorizer-cmp").setup({
   color_square_width = 2,
 })
-
-require("cmp").config.formatting = {
-  format = require("tailwindcss-colorizer-cmp").formatter
-}
 

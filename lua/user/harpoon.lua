@@ -10,3 +10,6 @@ harpoon.setup({
 
 vim.keymap.set('n', '<leader>af', mark.add_file, { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fh', ui.toggle_quick_menu, { noremap = true, silent = true })
+vim.keymap.set('n', '<Tab>', ui.nav_next, { noremap = true, silent = true })
+vim.keymap.set('n', '<S-Tab>', ui.nav_prev, { noremap = true, silent = true })
+
