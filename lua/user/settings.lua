@@ -1,6 +1,3 @@
-vim.g.loaded = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.cmd([[ set guicursor= ]])
 vim.cmd([[ set number ]])
 vim.cmd([[ set relativenumber ]])
@@ -20,7 +17,6 @@ vim.cmd([[ set noswapfile ]])
 vim.cmd([[ set noerrorbells ]])
 vim.cmd([[ set incsearch ]])
 vim.cmd([[ set scrolloff=8 ]])
--- vim.cmd([[ set colorcolumn=80 ]])
 vim.cmd([[ set termguicolors      ]])
 vim.cmd([[ set guicursor= ]])
 vim.cmd([[ set foldlevel=99 ]])

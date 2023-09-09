@@ -13,7 +13,7 @@ telescope.setup {
         ['q'] =  actions.close
       }
     },
-    file_ignore_patterns = {"vendor", "node_modules", ".git"}
+    file_ignore_patterns = {"vendor", "node_modules", ".git", "target"}
   },
   extensions = {
     file_browser = {
@@ -39,7 +39,6 @@ telescope.setup {
 
 telescope.load_extension('fzf')
 telescope.load_extension('file_browser')
-telescope.load_extension("ui-select")
 
 local options = { noremap = true, silent = true }
 vim.keymap.set('n', '<C-p>', '<Cmd>lua require("telescope.builtin").find_files({ no_ignore = false, hidden = true, previewer = false })<CR>', options)

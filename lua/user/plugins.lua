@@ -2,7 +2,6 @@ vim.cmd [[packadd packer.nvim]]
 vim.env.OPENAI_API_KEY = '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'
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
   -- General
@@ -28,22 +27,14 @@ return require('packer').startup(function(use)
 
   -- Colorscheme
   use 'ellisonleao/gruvbox.nvim'
-  use 'joshdick/onedark.vim'
-  use 'Mofiqul/vscode.nvim'
   use 'folke/tokyonight.nvim'
   use { "catppuccin/nvim", as = "catppuccin" }
-  use 'shaunsingh/moonlight.nvim'
 
   use 'rest-nvim/rest.nvim'
 
   -- Window Style
   use 'ryanoasis/vim-devicons'
   use 'kyazdani42/nvim-web-devicons'
-  -- use 'moll/vim-bbye'
-  -- use 'akinsho/bufferline.nvim'
-  -- use 'nvim-lualine/lualine.nvim'
-  -- use 'goolord/alpha-nvim'
-  -- use 'karb94/neoscroll.nvim'
 
   -- Tree
   use 'nvim-tree/nvim-tree.lua'
@@ -55,14 +46,11 @@ return require('packer').startup(function(use)
       'nvim-telescope/telescope-fzf-native.nvim',
       run = 'make'
   }
-  use 'nvim-telescope/telescope-ui-select.nvim'
+  use 'stevearc/dressing.nvim'
 
   -- Git
   use 'kdheepak/lazygit.nvim'
   use 'lewis6991/gitsigns.nvim'
-
-  -- Tests
-  -- use 'janko/vim-test'
 
   -- Treesitter
   use {
@@ -88,16 +76,10 @@ return require('packer').startup(function(use)
   use 'MunifTanjim/prettier.nvim'
   use 'styled-components/vim-styled-components'
 
-  -- DAP
-  -- use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-  -- use 'theHamsta/nvim-dap-virtual-text'
-  -- use 'leoluz/nvim-dap-go'
-
   -- AI Completion
   use {
     'Exafunction/codeium.vim',
     config = function ()
-      -- Change '<C-g>' here to any keycode you like.
       vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
       vim.keymap.set('i', '<C-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
       vim.keymap.set('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })

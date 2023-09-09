@@ -72,10 +72,10 @@ cmp.setup({
     format = function(entry, vim_item)
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       vim_item.menu = ({
-        nvim_lsp = "(LSP)",
-        luasnip = "(Snippet)",
-        buffer = "(Buffer)",
-        path = "(Path)",
+        nvim_lsp = "",
+        luasnip = "",
+        buffer = "",
+        path = "",
       })[entry.source.name]
       return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
       -- return vim_item
@@ -121,6 +121,9 @@ nvim_lsp.csharp_ls.setup {
   capabilities = capabilities
 }
 nvim_lsp.gopls.setup {
+  capabilities = capabilities
+}
+nvim_lsp.jdtls.setup {
   capabilities = capabilities
 }
 
