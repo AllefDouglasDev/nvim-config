@@ -1,9 +1,3 @@
-vim.cmd([[ 
-  function! CloseBuffers()
-    execute '%bd | e#'
-  endfunction
-]])
-
 local options = { noremap = true, silent = true }
 vim.cmd([[ let mapleader = " " ]])
 vim.keymap.set('n', '<C-x>', ':noh<CR>', options)
