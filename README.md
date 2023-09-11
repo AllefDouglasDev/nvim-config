@@ -1,4 +1,1 @@
-# Install
-
- - brew install fzf
-
+# My neovim config
