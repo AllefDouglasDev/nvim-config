@@ -10,8 +10,8 @@ require("user.tailwind")
 
 require("user.treesitter")
 require("user.telescope")
-require("user.tree")
 require("user.harpoon")
+require("user.tree")
 
 require("user.git")
 require("user.nullls")
