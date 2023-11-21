@@ -13,6 +13,7 @@ return {
         local luasnip_from_vscode = require("luasnip/loaders/from_vscode")
         local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
         local nvim_lsp = require('lspconfig')
+        local luasnip = require('luasnip')
 
         luasnip_from_vscode.lazy_load()
 
@@ -130,6 +131,12 @@ return {
             capabilities = capabilities
         }
         nvim_lsp.jdtls.setup {
+            capabilities = capabilities
+        }
+        nvim_lsp.gdscript.setup {
+            capabilities = capabilities
+        }
+        nvim_lsp.pyright.setup {
             capabilities = capabilities
         }
     end
