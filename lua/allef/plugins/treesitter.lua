@@ -31,9 +31,10 @@ return {
             autotag = {
                 enable = true,
             },
-            context_commentstring = {
-                enable = true,
-            }
+            -- context_commentstring = {
+            --     enable = true,
+            -- }
         })
+        -- require('ts-context-commentstring').setup {}
     end
 }

@@ -15,6 +15,14 @@ return {
                 width = 40,
                 side = "left",
             },
+            renderer = {
+                group_empty = true,
+            },
+            filters = {
+                dotfiles = false,
+                git_ignored = false,
+                custom = {"^\\.git", "^\\.next", "^node_modules", "^\\.turbo", "^dist"}, -- Toggle with U
+            },
         })
 
         vim.keymap.set('n', '<C-n>', ':NvimTreeFindFileToggle<CR>')

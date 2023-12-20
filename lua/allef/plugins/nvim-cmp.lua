@@ -137,7 +137,16 @@ return {
             capabilities = capabilities
         }
         nvim_lsp.pyright.setup {
-            capabilities = capabilities
+            capabilities = capabilities,
+            settings = {
+                python = {
+                    analysis = {
+                        extraPaths = {
+                            "/Users/allefdouglascruz/Documents/dev/joyjet/alta-backend/.venv/lib/python2.7/site-packages",
+                        }
+                    }
+                }
+            }
         }
     end
 }
