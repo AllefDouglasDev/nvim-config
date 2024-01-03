@@ -136,6 +136,9 @@ return {
         nvim_lsp.gdscript.setup {
             capabilities = capabilities
         }
+        nvim_lsp.lua_ls.setup {
+            capabilities = capabilities
+        }
         nvim_lsp.pyright.setup {
             capabilities = capabilities,
             settings = {

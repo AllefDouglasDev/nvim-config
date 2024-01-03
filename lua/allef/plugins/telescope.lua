@@ -24,7 +24,7 @@ return {
                         ['q'] =  actions.close
                     }
                 },
-                file_ignore_patterns = {"vendor", "node_modules", ".git", "target", ".venv", ".next"}
+                file_ignore_patterns = {"vendor", "node_modules", ".git", "target", ".venv"}
             },
             extensions = {
                 file_browser = {
