@@ -26,4 +26,5 @@ vim.cmd([[ set cursorline ]])
 vim.cmd([[ set splitbelow ]])
 vim.cmd([[ set splitright ]])
 vim.cmd([[ set clipboard=unnamedplus ]])
+vim.cmd([[ set colorcolumn=120 ]])
 
