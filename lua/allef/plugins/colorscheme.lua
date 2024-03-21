@@ -25,15 +25,15 @@ return {
             invert_intend_guides = false,
             inverse = true, -- invert background for search, diffs, statuslines and errors
             contrast = "hard", -- can be "hard", "soft" or empty string
-            palette_overrides = {
-                dark0_hard = "#18191A"
-            },
+            -- palette_overrides = {
+            --     dark0_hard = "#18191A"
+            -- },
             overrides = {},
             dim_inactive = false,
             transparent_mode = false,
         })
 
         vim.opt.background = "dark"
-        vim.cmd([[colorscheme catppuccin]])
+        vim.cmd([[colorscheme catppuccin-mocha]])
     end
 }
