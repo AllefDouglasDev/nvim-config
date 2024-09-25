@@ -110,7 +110,7 @@ return {
             }
         })
 
-        nvim_lsp.tsserver.setup {
+        nvim_lsp.ts_ls.setup {
             capabilities = capabilities,
             filetypes = { "javascript", "typescript", "typescriptreact", "typescript.tsx" },
             root_dir = function() return vim.loop.cwd() end,

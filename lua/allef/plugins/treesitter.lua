@@ -2,10 +2,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     dependencies = {
-        'JoosepAlviste/nvim-ts-context-commentstring',
+        "JoosepAlviste/nvim-ts-context-commentstring",
         -- 'nvim-treesitter/nvim-treesitter-context',
     },
     config = function()
+        require("nvim-ts-autotag").setup()
         require("nvim-treesitter.configs").setup({
             highlight = {
                 enable = true,
@@ -16,25 +17,18 @@ return {
                 enable = true,
                 disable = {},
             },
-            ensure_installed = { 
-                'css',
-                'http',
-                'json',
-                'lua',
-                'prisma',
-                'query',
-                'rust',
-                'toml',
-                'tsx',
-                'typescript'
+            ensure_installed = {
+                "css",
+                "http",
+                "json",
+                "lua",
+                "prisma",
+                "query",
+                "rust",
+                "toml",
+                "tsx",
+                "typescript",
             },
-            autotag = {
-                enable = true,
-            },
-            -- context_commentstring = {
-            --     enable = true,
-            -- }
         })
-        -- require('ts-context-commentstring').setup {}
-    end
+    end,
 }

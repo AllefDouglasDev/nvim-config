@@ -1,6 +1,6 @@
 return {
     "windwp/nvim-autopairs",
-    dependencies = { 
+    dependencies = {
         "alvan/vim-closetag",
         "windwp/nvim-ts-autotag",
     },
@@ -9,8 +9,8 @@ return {
         local ts_autotag = require("nvim-ts-autotag")
 
         autopairs.setup({
-            disable_filetype = { 'TelescopePrompt', 'vim' }
+            disable_filetype = { "TelescopePrompt", "vim" },
         })
         ts_autotag.setup()
-    end
+    end,
 }
