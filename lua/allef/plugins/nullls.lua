@@ -31,6 +31,7 @@ return {
             return false
         end
 
+        local eslint_disabled = false
         local formatting = null_ls.builtins.formatting
         null_ls.setup({
             debug = false,
@@ -40,7 +41,11 @@ return {
                 null_ls.builtins.code_actions.eslint_d,
                 null_ls.builtins.diagnostics.eslint_d.with({
                     filter = function(diagnostic)
-                        local ignore = { "no eslint configuration found" }
+                        local ignore = { "no eslint configuration found", "failed to decode json" }
+                        print(tostring(eslint_disabled))
+                        if eslint_disabled then
+                            return false
+                        end
                         return not contains_any_ignore_case(diagnostic.message, ignore)
                     end,
                 }),
@@ -49,5 +54,9 @@ return {
 
         local options = { noremap = true, silent = true }
         vim.keymap.set('n', '<leader>fc', vim.lsp.buf.format, options)
+        vim.keymap.set('n', '<leader>fd', function()
+            eslint_disabled = not eslint_disabled
+            print("eslint disabled: " .. tostring(eslint_disabled))
+        end, options)
     end
 }

@@ -38,6 +38,7 @@ return {
 		vim.cmd("colorscheme darcula-dark")
 		-- vim.cmd("colorscheme catppuccin-mocha")
 		-- vim.cmd("colorscheme poimandres")
+		-- vim.cmd("colorscheme tokyonight-night")
 
 	end,
 }

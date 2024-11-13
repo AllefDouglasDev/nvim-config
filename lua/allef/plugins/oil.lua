@@ -5,7 +5,8 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
-			require("oil").setup({
+			local oil = require("oil")
+			oil.setup({
 				columns = { "icon" },
 				keymaps = {
 					["<C-h>"] = false,
@@ -17,10 +18,11 @@ return {
 			})
 
 			vim.keymap.set("n", "-", ":Oil<cr>", { noremap = true, silent = true, desc = "Open parent directory" })
+			vim.keymap.set("n", "<C-n>", ":Oil<cr>", { noremap = true, silent = true, desc = "Open parent directory" })
 			vim.keymap.set(
 				"n",
 				"<space>-",
-				require("oil").toggle_float,
+				oil.toggle_float,
 				{ noremap = true, silent = true, desc = "Open parent directory" }
 			)
 		end,
