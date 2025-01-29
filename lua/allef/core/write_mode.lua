@@ -4,3 +4,4 @@ function write_mode()
     vim.opt.background = "light"
     vim.cmd([[ colorscheme quiet ]])
 end
+

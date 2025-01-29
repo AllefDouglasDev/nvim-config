@@ -27,6 +27,7 @@ return {
                 file_ignore_patterns = {"vendor", "node_modules", ".git", "target", ".venv", "dist", "pgdata"}
             },
             extensions = {
+                fzf = {},
                 file_browser = {
                     theme = 'dropdown',
                     hijack_netrw = true,
