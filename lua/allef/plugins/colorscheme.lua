@@ -5,6 +5,7 @@ return {
 		"ellisonleao/gruvbox.nvim",
 		"folke/tokyonight.nvim",
 		"xiantang/darcula-dark.nvim",
+        "blazkowolf/gruber-darker.nvim",
 	},
 	priority = 1000,
 	config = function()
@@ -34,8 +35,10 @@ return {
 			transparent_mode = false,
 		})
 
-		vim.opt.background = "dark"
+		-- vim.opt.background = "dark"
+        -- vim.cmd("colorscheme gruber-darker")
 		vim.cmd("colorscheme darcula-dark")
+		-- vim.cmd("colorscheme gruvbox")
 		-- vim.cmd("colorscheme catppuccin-mocha")
 		-- vim.cmd("colorscheme poimandres")
 		-- vim.cmd("colorscheme tokyonight-night")

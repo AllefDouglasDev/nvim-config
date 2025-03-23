@@ -1,24 +1,38 @@
 return {
-    "ThePrimeagen/harpoon",
-    dependencies = {
-        "nvim-telescope/telescope.nvim",
-    },
-    config = function()
-        require("telescope").load_extension("harpoon")
-        local mark = require("harpoon.mark")
-        local ui = require("harpoon.ui")
-        local harpoon = require("harpoon")
-        harpoon.setup({
-            menu = {
-                width = vim.api.nvim_win_get_width(0) - 40,
-            },
-        })
+	"ThePrimeagen/harpoon",
+	dependencies = {
+		"nvim-telescope/telescope.nvim",
+	},
+	config = function()
+		require("telescope").load_extension("harpoon")
+		local mark = require("harpoon.mark")
+		local ui = require("harpoon.ui")
+		local harpoon = require("harpoon")
 
-        vim.keymap.set("n", "<leader>af", mark.add_file, { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>fh", ui.toggle_quick_menu, { noremap = true, silent = true })
-        vim.keymap.set("n", "<Tab>", ui.nav_next, { noremap = true, silent = true })
-        vim.keymap.set("n", "<S-Tab>", ui.nav_prev, { noremap = true, silent = true })
-    end,
+		local function update_harpoon_width()
+			harpoon.setup({
+				menu = {
+					width = vim.api.nvim_win_get_width(0) - 40,
+				},
+			})
+		end
+
+        update_harpoon_width()
+
+		vim.api.nvim_create_autocmd("VimResized", {
+			callback = function()
+				update_harpoon_width()
+			end,
+		})
+
+        -- create a vim function that calls update_harpoon_width
+        vim.api.nvim_create_user_command("UpdateHarpoonWidth", update_harpoon_width, {})
+
+		vim.keymap.set("n", "<leader>af", mark.add_file, { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>fh", ui.toggle_quick_menu, { noremap = true, silent = true })
+		vim.keymap.set("n", "<Tab>", ui.nav_next, { noremap = true, silent = true })
+		vim.keymap.set("n", "<S-Tab>", ui.nav_prev, { noremap = true, silent = true })
+	end,
 }
 -- return {
 --     "ThePrimeagen/harpoon",
