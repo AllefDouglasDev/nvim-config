@@ -63,6 +63,10 @@ return {
                     },
                 },
             },
+            pickers = {
+                live_grep = { additional_args = additional_rg_args },
+                grep_string = { additional_args = additional_rg_args },
+            },
         })
 
         telescope.load_extension("fzf")
