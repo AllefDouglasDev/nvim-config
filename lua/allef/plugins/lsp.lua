@@ -6,20 +6,21 @@ return {
     },
     config = function()
         local mason = require("mason")
-        local mason_lspconfig = require("mason-lspconfig")
+        -- local mason_lspconfig = require("mason-lspconfig")
         local lspconfig = require("lspconfig")
 
         lspconfig.setup = {}
         mason.setup()
-        mason_lspconfig.setup({
-            ensure_installed = {
-                "lua_ls",
-                "ts_ls",
-                "cssls",
-                "rust_analyzer",
-                "tailwindcss",
-            },
-        })
+        -- mason_lspconfig.setup({
+        --     -- ensure_installed = {
+        --     --     "lua_ls",
+        --     --     "ts_ls",
+        --     --     "cssls",
+        --     --     "rust_analyzer",
+        --     --     "tailwindcss",
+        --     -- },
+        --     -- automatic_installation = true,
+        -- })
 
         -- Configuring borders
         vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]])

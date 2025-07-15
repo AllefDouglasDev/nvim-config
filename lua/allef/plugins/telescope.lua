@@ -18,7 +18,7 @@ return {
         end
 
         local additional_rg_args = { "--hidden", "--glob", "!**/.git/*", "--glob", "!**/node_modules/*" }
-
+-- , "!**/venv/*"
         telescope.setup({
             defaults = {
                 mappings = {
@@ -35,6 +35,8 @@ return {
                     "dist",
                     "pgdata",
                     "coverage",
+                    -- ".next",
+                    "venv",
                 },
             },
             extensions = {

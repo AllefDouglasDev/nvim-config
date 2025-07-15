@@ -1,5 +1,10 @@
 return {
 	"lewis6991/gitsigns.nvim",
+	dependencies = {
+		"akinsho/git-conflict.nvim",
+		version = "*",
+		config = true,
+	},
 	config = function()
 		require("gitsigns").setup({
 			signs = {

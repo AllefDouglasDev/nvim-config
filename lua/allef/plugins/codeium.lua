@@ -9,5 +9,8 @@ return {
         vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
         vim.keymap.set('n', '<leader>dia', '<Cmd>CodeiumDisable<CR>', { noremap = true, silent = true })
         vim.keymap.set('n', '<leader>eia', '<Cmd>CodeiumEnable<CR>', { noremap = true, silent = true })
+
+        -- disable by default
+        -- vim.cmd('CodeiumDisable')
     end
 }

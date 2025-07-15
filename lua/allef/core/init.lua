@@ -6,4 +6,5 @@ require("allef.core.fix_issue")
 require("allef.core.run_script")
 require("allef.core.write_mode")
 require("allef.core.save_folder_file")
+require("allef.core.accept_reject_incoming_changes")
 

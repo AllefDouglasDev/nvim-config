@@ -20,6 +20,6 @@ require("lazy").setup("allef.plugins", {
         notify = false,
     },
     change_detection = {
-        nofity = false,
+        notify = false,
     },
 })
