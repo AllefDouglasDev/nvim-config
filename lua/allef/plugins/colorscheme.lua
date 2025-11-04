@@ -9,6 +9,19 @@ return {
 	},
 	priority = 1000,
 	config = function()
+		-- Configuração do Catppuccin com transparência
+		require("catppuccin").setup({
+			transparent_background = true,
+			show_end_of_buffer = false,
+			integration = {
+				cmp = true,
+				gitsigns = true,
+				nvimtree = true,
+				treesitter = true,
+				telescope = true,
+			},
+		})
+
 		local gruvbox = require("gruvbox")
 
 		gruvbox.setup({
@@ -32,16 +45,16 @@ return {
 			-- },
 			overrides = {},
 			dim_inactive = false,
-			transparent_mode = false,
+			transparent_mode = true,
 		})
 
+		vim.cmd("colorscheme catppuccin-mocha")
 		-- vim.opt.background = "dark"
-        -- vim.cmd("colorscheme gruber-darker")
-		vim.cmd("colorscheme darcula-dark")
+		-- vim.cmd("colorscheme darcula-dark")
 		-- vim.cmd("colorscheme gruvbox")
-		-- vim.cmd("colorscheme catppuccin-mocha")
 		-- vim.cmd("colorscheme poimandres")
 		-- vim.cmd("colorscheme tokyonight-night")
+		-- vim.cmd("colorscheme catppuccin-mocha")
 
 	end,
 }

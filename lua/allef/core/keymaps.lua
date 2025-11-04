@@ -9,6 +9,13 @@ vim.keymap.set('n', '<leader>k', ':resize +5<CR>', options)
 vim.keymap.set('n', '<C-x>', ':noh<CR>', options)
 vim.keymap.set("n", "<C-d>", "<C-d>zz", options)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", options)
+vim.keymap.set("n", "<leader>qn", ":cnext<CR>", options)
+vim.keymap.set("n", "<leader>qp", ":cprev<CR>", options)
+vim.keymap.set("n", "<leader>ww", ":set wrap<CR>", options)
+vim.keymap.set("n", "<leader>wo", ":set nowrap<CR>", options)
+
+-- Run in background
+vim.keymap.set('n', '<leader>mp', ':!md %<CR>', { desc = 'Markdown Preview' })
 --
 -- -- Remapeamentos para deleção e alteração de texto (não copiar para o registro padrão)
 -- vim.api.nvim_set_keymap('n', 'd', '"_d', { noremap = true, silent = true })

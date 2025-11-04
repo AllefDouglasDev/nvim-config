@@ -165,5 +165,12 @@ return {
 			--     }
 			-- }
 		})
+		
+		nvim_lsp.marksman.setup({
+			capabilities = capabilities,
+		})
+
+		-- Emit CmpReady event after setup is complete
+		vim.api.nvim_exec_autocmds("User", { pattern = "CmpReady" })
 	end,
 }
