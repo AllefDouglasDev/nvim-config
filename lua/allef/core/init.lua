@@ -10,4 +10,5 @@ require("allef.core.accept_reject_incoming_changes")
 require("allef.core.file_autocomplete").setup()
 require("allef.core.markdown").setup()
 require("allef.core.note").setup()
+require("allef.core.todo").setup()
 

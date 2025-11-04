@@ -32,7 +32,8 @@ M.create_file = function(name)
 	if name == nil then
 		vim.cmd("e " .. index_with_pad .. ".md")
 	else
-		vim.cmd("e " .. index_with_pad .. "-" .. name .. ".md")
+		name = name:gsub(" ", "_")
+		vim.cmd("e " .. index_with_pad .. "_" .. name .. ".md")
 	end
 end
 
