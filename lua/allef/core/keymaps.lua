@@ -14,6 +14,10 @@ vim.keymap.set("n", "<leader>qp", ":cprev<CR>", options)
 vim.keymap.set("n", "<leader>ww", ":set wrap<CR>", options)
 vim.keymap.set("n", "<leader>wo", ":set nowrap<CR>", options)
 
+-- vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>', options)
+-- vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p<CR>', options)
+
+
 -- Run in background
 vim.keymap.set('n', '<leader>mp', ':!md %<CR>', { desc = 'Markdown Preview' })
 --

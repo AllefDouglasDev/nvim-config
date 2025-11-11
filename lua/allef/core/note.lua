@@ -45,4 +45,13 @@ vim.api.nvim_create_user_command("NCreateFile", function(opts)
 	M.create_file(name)
 end, { nargs = '?' })
 
+vim.api.nvim_create_user_command("NSearch", function(opts)
+	local search = opts.args
+	if search == "" or search == nil then
+		search = ""
+	end
+	vim.cmd("vim /" .. search .."/ *.md")
+	vim.cmd("copen")
+end, { nargs = '?'})
+
 return M
