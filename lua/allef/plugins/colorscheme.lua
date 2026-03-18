@@ -48,9 +48,9 @@ return {
 			transparent_mode = true,
 		})
 
-		vim.cmd("colorscheme catppuccin-mocha")
+		-- vim.cmd("colorscheme catppuccin-mocha")
 		-- vim.opt.background = "dark"
-		-- vim.cmd("colorscheme darcula-dark")
+		vim.cmd("colorscheme darcula-dark")
 		-- vim.cmd("colorscheme gruvbox")
 		-- vim.cmd("colorscheme poimandres")
 		-- vim.cmd("colorscheme tokyonight-night")

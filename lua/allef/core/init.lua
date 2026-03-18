@@ -11,4 +11,4 @@ require("allef.core.file_autocomplete").setup()
 require("allef.core.markdown").setup()
 require("allef.core.note").setup()
 require("allef.core.todo").setup()
-
+require("allef.core.git_diff").setup()

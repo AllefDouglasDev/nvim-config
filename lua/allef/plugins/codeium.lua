@@ -1,7 +1,8 @@
 return {
     "Exafunction/codeium.vim",
     config = function ()
-        vim.env.OPENAI_API_KEY = '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'
+        -- Disable default Tab mapping so we can handle it in nvim-cmp
+        vim.g.codeium_no_map_tab = true
 
         vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
         vim.keymap.set('i', '<C-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
