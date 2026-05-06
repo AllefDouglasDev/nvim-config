@@ -111,16 +111,11 @@ return {
                 -- Confirm selection (select = false means you must explicitly select)
                 ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
-                -- Tab navigation with Codeium priority
+                -- Tab: navigate cmp / expand snippets / fallback to literal Tab.
+                -- Codeium suggestions are accepted with <C-g> (see codeium.lua) to
+                -- avoid mixing codeium#Accept() (an expr-mapping helper) with
+                -- nvim_feedkeys, which caused INSERT-mode hangs.
                 ["<Tab>"] = cmp.mapping(function(fallback)
-                    -- Check if Codeium has a suggestion first
-                    if vim.fn.exists("*codeium#Accept") == 1 then
-                        local codeium_accept = vim.fn["codeium#Accept"]()
-                        if codeium_accept ~= "" then
-                            vim.api.nvim_feedkeys(codeium_accept, "i", true)
-                            return
-                        end
-                    end
                     if cmp.visible() then
                         cmp.select_next_item()
                     elseif luasnip.expand_or_jumpable() then

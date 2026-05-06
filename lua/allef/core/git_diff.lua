@@ -4,7 +4,7 @@ M.setup = function() end
 
 -- Verifica se uma branch/ref existe
 local function ref_exists(ref)
-    local result = vim.fn.system("git rev-parse --verify " .. ref .. " 2>/dev/null")
+    vim.fn.system({ 'git', 'rev-parse', '--verify', ref })
     return vim.v.shell_error == 0
 end
 
@@ -25,6 +25,13 @@ M.git_diff = function(target_branch)
     -- Guarda o arquivo atual (caminho relativo ao repo)
     local current_file = vim.fn.expand('%:.')
 
+    -- Se estiver num buffer GitFileDiff, usa o arquivo que gerou o diff
+    local bufname = vim.fn.bufname('%')
+    local from_file_diff = bufname:match("^GitFileDiff: (.+)$")
+    if from_file_diff then
+        current_file = from_file_diff
+    end
+
     -- Se não informar branch, usa a padrão
     if target_branch == nil or target_branch == "" then
         target_branch = get_default_branch()
@@ -40,8 +47,7 @@ M.git_diff = function(target_branch)
     end
 
     -- Executa git diff --name-only
-    local cmd = "git diff --name-only " .. target_branch .. "...HEAD"
-    local output = vim.fn.systemlist(cmd)
+    local output = vim.fn.systemlist({ 'git', 'diff', '--name-only', target_branch .. '...HEAD' })
 
     if vim.v.shell_error ~= 0 then
         vim.notify("Erro ao executar git diff", vim.log.levels.ERROR)
@@ -94,9 +100,58 @@ M.git_diff = function(target_branch)
         local line = vim.api.nvim_get_current_line()
         if line ~= "" and not line:match("^#") and not line:match("^Nenhum") then
             vim.cmd('bdelete')
-            vim.cmd('edit ' .. line)
+            vim.cmd('edit ' .. vim.fn.fnameescape(line))
         end
     end, opts)
+end
+
+-- Função principal para diff do arquivo atual
+M.git_file_diff = function(target_branch)
+    local current_file = vim.fn.expand('%:.')
+
+    if current_file == "" then
+        vim.notify("Nenhum arquivo aberto", vim.log.levels.WARN)
+        return
+    end
+
+    if target_branch == nil or target_branch == "" then
+        target_branch = get_default_branch()
+        if not target_branch then
+            return
+        end
+    end
+
+    if not ref_exists(target_branch) then
+        vim.notify("Branch '" .. target_branch .. "' não encontrada", vim.log.levels.ERROR)
+        return
+    end
+
+    local output = vim.fn.systemlist({ 'git', 'diff', target_branch .. '...HEAD', '--', current_file })
+
+    if vim.v.shell_error ~= 0 then
+        vim.notify("Erro ao executar git diff", vim.log.levels.ERROR)
+        return
+    end
+
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+    vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
+    vim.api.nvim_buf_set_name(buf, "GitFileDiff: " .. current_file)
+
+    if #output == 0 then
+        output = { "# Nenhuma alteração em " .. current_file .. " em relação a " .. target_branch }
+    end
+
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, output)
+    vim.api.nvim_buf_set_option(buf, 'modifiable', false)
+    vim.api.nvim_buf_set_option(buf, 'filetype', 'diff')
+
+    vim.cmd('enew')
+    vim.api.nvim_set_current_buf(buf)
+
+    local opts = { noremap = true, silent = true, buffer = buf }
+    vim.keymap.set('n', 'q', '<cmd>bdelete<CR>', opts)
+    vim.keymap.set('n', '<Esc>', '<cmd>bdelete<CR>', opts)
 end
 
 -- Registra comando
@@ -104,7 +159,12 @@ vim.api.nvim_create_user_command('GitDiff', function(opts)
     M.git_diff(opts.args)
 end, { nargs = '?' })
 
--- Keymap
+vim.api.nvim_create_user_command('GitFileDiff', function(opts)
+    M.git_file_diff(opts.args)
+end, { nargs = '?' })
+
+-- Keymaps
 vim.keymap.set('n', '<leader>gd', ':GitDiff<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>gf', ':GitFileDiff<CR>', { noremap = true, silent = true })
 
 return M
