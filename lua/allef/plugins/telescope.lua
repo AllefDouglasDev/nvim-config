@@ -38,6 +38,14 @@ return {
                     -- ".next",
                     "venv",
                 },
+                cache_picker = { num_pickers = 5 },
+                preview = {
+                    filesize_limit = 1,
+                    timeout = 250,
+                    treesitter = true,
+                },
+                dynamic_preview_title = true,
+                path_display = { "truncate" },
             },
             extensions = {
                 fzf = {

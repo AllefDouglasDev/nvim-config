@@ -20,6 +20,21 @@ require("lazy").setup("allef.plugins", {
         notify = false,
     },
     change_detection = {
+        enabled = false,
         notify = false,
+    },
+    performance = {
+        rtp = {
+            disabled_plugins = {
+                "gzip",
+                "matchit",
+                "matchparen",
+                "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
+            },
+        },
     },
 })

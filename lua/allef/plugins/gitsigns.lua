@@ -15,6 +15,7 @@ return {
 				changedelete = { text = "▎" },
 			},
 			signcolumn = true,
+			signs_staged_enable = false,
 			numhl = false,
 			linehl = false,
 			word_diff = false,

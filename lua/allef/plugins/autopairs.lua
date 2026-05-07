@@ -11,6 +11,12 @@ return {
         autopairs.setup({
             disable_filetype = { "TelescopePrompt", "vim" },
         })
-        ts_autotag.setup()
+        ts_autotag.setup({
+            opts = {
+                enable_close = true,
+                enable_rename = true,
+                enable_close_on_slash = false,
+            },
+        })
     end,
 }

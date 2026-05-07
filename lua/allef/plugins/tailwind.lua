@@ -1,7 +1,7 @@
 return {
     "roobert/tailwindcss-colorizer-cmp.nvim",
     dependencies = {
-        "NvChad/nvim-colorizer.lua",
+        "catgoose/nvim-colorizer.lua",
     },
     config = function()
         require("colorizer").setup({

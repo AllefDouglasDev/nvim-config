@@ -56,9 +56,9 @@ local diagnostic_signs = {
 
 
 return {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     dependencies = {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         "neovim/nvim-lspconfig",
         "hrsh7th/cmp-nvim-lsp",
@@ -80,7 +80,7 @@ return {
 
         require("mason-lspconfig").setup({
             ensure_installed = servers,
-            automatic_installation = true,
+            automatic_enable = true,
         })
 
         require("mason-tool-installer").setup({
