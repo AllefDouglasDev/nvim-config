@@ -167,8 +167,8 @@ ftplugin/javascript.lua
 ## Custom Commands
 
 ### Note Management
-- `:NCreateFile [name]` - Create a numbered note file
-- `:NSearch [pattern]` - Search across markdown files
+- `:NotesCreateFile [name]` - Create a numbered note file
+- `:NotesSearch [pattern]` - Search across markdown files
 
 ### Git
 - `:AcceptAllIncoming` - Accept all incoming changes in conflicts

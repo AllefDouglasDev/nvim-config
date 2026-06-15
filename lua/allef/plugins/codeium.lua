@@ -12,6 +12,6 @@ return {
         vim.keymap.set('n', '<leader>eia', '<Cmd>CodeiumEnable<CR>', { noremap = true, silent = true })
 
         -- disable by default
-        -- vim.cmd('CodeiumDisable')
+        vim.cmd('CodeiumDisable')
     end
 }

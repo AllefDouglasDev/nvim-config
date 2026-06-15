@@ -165,8 +165,8 @@ Custom scripts and utilities for workflow enhancement.
 ## Custom Commands
 
 ### Note Management Commands
-- `:NCreateFile [name]` - Create a new numbered note file in the current directory
-- `:NSearch [pattern]` - Search for pattern across all markdown files
+- `:NotesCreateFile [name]` - Create a new numbered note file in the current directory
+- `:NotesSearch [pattern]` - Search for pattern across all markdown files
 
 ### Git Conflict Commands
 - `:AcceptAllIncoming` - Accept all incoming changes in git conflicts

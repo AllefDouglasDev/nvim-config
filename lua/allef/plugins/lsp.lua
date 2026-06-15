@@ -33,6 +33,8 @@ local servers = {
     "pylsp",
     "prismals",
     "marksman",
+    "jdtls",
+	"zls",
 }
 
 -----------------------------------------
@@ -98,6 +100,15 @@ return {
         end
 
         -----------------------------------------
+        -- Java: jdtls requires JDK 21+, but /usr/bin/java points to JDK 20.
+        -- Point JAVA_HOME at Homebrew's newer OpenJDK so the jdtls launcher uses it.
+        -----------------------------------------
+        local jdk_home = "/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
+        if vim.fn.isdirectory(jdk_home) == 1 then
+            vim.env.JAVA_HOME = jdk_home
+        end
+
+        -----------------------------------------
         -- Enable LSP Servers
         -----------------------------------------
         vim.lsp.enable(servers)
@@ -150,10 +161,10 @@ return {
 
                 -- Diagnostics
                 vim.keymap.set("n", "<leader>x", vim.diagnostic.open_float, opts)
-                vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-                vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-                vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, opts)
-                vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts)
+                vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts)
+                vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, opts)
+                vim.keymap.set("n", "<leader>df", function() vim.diagnostic.jump({ count = 1 }) end, opts)
+                vim.keymap.set("n", "<leader>dp", function() vim.diagnostic.jump({ count = -1 }) end, opts)
                 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
                 vim.keymap.set("n", "<leader>sd", "<Cmd>Telescope diagnostics<CR>", opts)
 
