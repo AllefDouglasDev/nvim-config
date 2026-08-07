@@ -46,12 +46,31 @@ M.git_diff = function(target_branch)
         return
     end
 
-    -- Executa git diff --name-only
-    local output = vim.fn.systemlist({ 'git', 'diff', '--name-only', target_branch .. '...HEAD' })
+    -- Executa git diff --name-only (mudanças commitadas em relação à branch alvo)
+    local committed = vim.fn.systemlist({ 'git', 'diff', '--name-only', target_branch .. '...HEAD' })
 
     if vim.v.shell_error ~= 0 then
         vim.notify("Erro ao executar git diff", vim.log.levels.ERROR)
         return
+    end
+
+    -- Mudanças ainda não commitadas (staged e unstaged) em relação a HEAD
+    local uncommitted = vim.fn.systemlist({ 'git', 'diff', '--name-only', 'HEAD' })
+
+    -- Combina as duas listas removendo duplicados
+    local seen = {}
+    local output = {}
+    for _, file in ipairs(committed) do
+        if not seen[file] then
+            seen[file] = true
+            table.insert(output, file)
+        end
+    end
+    for _, file in ipairs(uncommitted) do
+        if not seen[file] then
+            seen[file] = true
+            table.insert(output, file)
+        end
     end
 
     -- Cria buffer
@@ -126,11 +145,24 @@ M.git_file_diff = function(target_branch)
         return
     end
 
-    local output = vim.fn.systemlist({ 'git', 'diff', target_branch .. '...HEAD', '--', current_file })
+    local committed_diff = vim.fn.systemlist({ 'git', 'diff', target_branch .. '...HEAD', '--', current_file })
 
     if vim.v.shell_error ~= 0 then
         vim.notify("Erro ao executar git diff", vim.log.levels.ERROR)
         return
+    end
+
+    -- Mudanças ainda não commitadas (staged e unstaged) do arquivo atual
+    local uncommitted_diff = vim.fn.systemlist({ 'git', 'diff', 'HEAD', '--', current_file })
+
+    local output = {}
+    vim.list_extend(output, committed_diff)
+    if #uncommitted_diff > 0 then
+        if #output > 0 then
+            table.insert(output, "")
+        end
+        table.insert(output, "# Alterações não commitadas")
+        vim.list_extend(output, uncommitted_diff)
     end
 
     local buf = vim.api.nvim_create_buf(false, true)
