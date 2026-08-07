@@ -20,6 +20,7 @@ return {
             "python",
             "query",
             "rust",
+            "sql",
             "toml",
             "tsx",
             "typescript",

@@ -35,6 +35,7 @@ local servers = {
     "marksman",
     "jdtls",
 	"zls",
+	"sqls",
 }
 
 -----------------------------------------
