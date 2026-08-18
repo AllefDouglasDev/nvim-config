@@ -3,4 +3,4 @@ require("allef.lazy")
 
 -- Tema pessoal (colors/allef-black.lua). Aplicado apos o lazy para vencer
 -- qualquer colorscheme que algum plugin tente definir no startup.
-vim.cmd.colorscheme("allef-black")
+vim.cmd.colorscheme("darcula-dark")
