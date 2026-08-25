@@ -9,6 +9,7 @@ return {
     config = function()
         local parsers = {
             "css",
+            "dart",
             "html",
             "http",
             "javascript",

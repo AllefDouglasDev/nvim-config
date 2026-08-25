@@ -6,6 +6,7 @@
   - JS/TS/React: prettierd (fallback: prettier)
   - CSS/SCSS/Less: prettierd
   - JSON/HTML/Markdown: prettierd
+  - Dart: dart_format (`dart format`, vem com o SDK)
 
   Keymaps:
   - <leader>fc  Format buffer (manual)
@@ -37,6 +38,9 @@ local formatters_by_ft = {
 
     -- GraphQL
     graphql = { "prettierd", "prettier", stop_after_first = true },
+
+    -- Dart (dart format vem junto com o SDK)
+    dart = { "dart_format" },
 }
 
 return {

@@ -30,6 +30,7 @@ All plugins are configured as lazy.nvim specs in separate files under `lua/allef
 - **Navigation**: Telescope, nvim-tree, oil.nvim, harpoon
 - **AI**: Avante.nvim and Codeium for AI assistance
 - **Debugging**: nvim-dap for debug adapter protocol
+- **Dart/Flutter**: flutter-tools.nvim (owns dartls, hot reload and the Dart/Flutter DAP adapters)
 
 ## Key Keybindings
 
@@ -57,6 +58,7 @@ All plugins are configured as lazy.nvim specs in separate files under `lua/allef
 - `<leader>aai`: Accept all incoming changes in git conflicts
 - `<leader>rai`: Reject all incoming changes in git conflicts
 - `<leader>sd`: Show all diagnostics (Telescope)
+- `<leader>F*`: Flutter commands (`Fr` run, `Fl` hot reload, `FR` hot restart, `Fs` command list)
 
 ## Development Workflow
 
@@ -67,6 +69,7 @@ All plugins are configured as lazy.nvim specs in separate files under `lua/allef
 
 ### LSP Configuration
 - Uses Mason for LSP server management (manual installation)
+- Exception: `dartls` ships with the Dart SDK and is configured by flutter-tools.nvim, not Mason
 - LSP servers need to be installed separately through Mason
 - Telescope integration for LSP navigation
 - Diagnostic signs and floating windows configured

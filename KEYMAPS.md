@@ -10,6 +10,7 @@ This document lists all custom keymaps configured in this Neovim setup. The lead
 - [Harpoon Keymaps](#harpoon-keymaps)
 - [Git Operations](#git-operations)
 - [Debugging (DAP)](#debugging-dap)
+- [Flutter](#flutter)
 - [Completion (nvim-cmp)](#completion-nvim-cmp)
 - [Todo Management](#todo-management)
 - [Custom Utilities](#custom-utilities)
@@ -126,6 +127,25 @@ Debug Adapter Protocol keymaps for debugging.
 | `n` | `<leader>dso` | DAP step out | Step out of function |
 | `n` | `<leader>bp` | DAP toggle breakpoint | Toggle breakpoint |
 | `n` | `<leader>di` | DAP UI toggle | Toggle DAP UI |
+
+---
+
+## Flutter
+
+Dart/Flutter operations via flutter-tools.nvim (prefix `<leader>F`).
+
+| Mode | Keymap | Action | Description |
+|------|--------|--------|-------------|
+| `n` | `<leader>Fr` | `:FlutterRun<CR>` | Run the app |
+| `n` | `<leader>Fl` | `:FlutterReload<CR>` | Hot reload |
+| `n` | `<leader>FR` | `:FlutterRestart<CR>` | Hot restart |
+| `n` | `<leader>Fq` | `:FlutterQuit<CR>` | Quit the running app |
+| `n` | `<leader>Fd` | `:FlutterDevices<CR>` | Pick a device |
+| `n` | `<leader>Fe` | `:FlutterEmulators<CR>` | Pick an emulator |
+| `n` | `<leader>Fo` | `:FlutterOutlineToggle<CR>` | Toggle the widget outline |
+| `n` | `<leader>Fv` | `:FlutterDevTools<CR>` | Open DevTools |
+| `n` | `<leader>Fc` | `:FlutterLogClear<CR>` | Clear the dev log |
+| `n` | `<leader>Fs` | `:Telescope flutter commands<CR>` | List all Flutter commands |
 
 ---
 

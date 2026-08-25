@@ -36,6 +36,8 @@ local servers = {
     "jdtls",
 	"zls",
 	"sqls",
+    -- dartls nao entra aqui: vem com o SDK do Dart e e configurado
+    -- pelo flutter-tools.nvim (lua/allef/plugins/flutter-tools.lua)
 }
 
 -----------------------------------------
