@@ -32,6 +32,7 @@ Basic editor operations and window management.
 | `n` | `<C-u>` | `<C-u>zz` | Scroll up and center cursor |
 | `n` | `<leader>qn` | `:cnext<CR>` | Next quickfix item |
 | `n` | `<leader>qp` | `:cprev<CR>` | Previous quickfix item |
+| `n` | `<leader>qc` | Lua function | Quickfix list from clipboard file paths (directories ignored) |
 | `n` | `<leader>ww` | `:set wrap<CR>` | Enable word wrap |
 | `n` | `<leader>wo` | `:set nowrap<CR>` | Disable word wrap |
 | `n` | `<leader>mp` | `:!md %<CR>` | Markdown preview |

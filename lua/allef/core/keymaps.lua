@@ -11,6 +11,21 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", options)
 vim.keymap.set("n", "<C-u>", "<C-u>zz", options)
 vim.keymap.set("n", "<leader>qn", ":cnext<CR>", options)
 vim.keymap.set("n", "<leader>qp", ":cprev<CR>", options)
+vim.keymap.set("n", "<leader>qc", function()
+	local items = {}
+	for _, line in ipairs(vim.split(vim.fn.getreg("+"), "\n")) do
+		local path = vim.trim(line)
+		if path ~= "" and vim.fn.filereadable(path) == 1 then
+			table.insert(items, { filename = path, lnum = 1 })
+		end
+	end
+	if #items == 0 then
+		vim.notify("Nenhum arquivo valido no clipboard", vim.log.levels.WARN)
+		return
+	end
+	vim.fn.setqflist(items)
+	vim.cmd("copen")
+end, { noremap = true, silent = true, desc = "Quickfix a partir do clipboard" })
 vim.keymap.set("n", "<leader>ww", ":set wrap<CR>", options)
 vim.keymap.set("n", "<leader>wo", ":set nowrap<CR>", options)
 vim.keymap.set("n", "<leader>nn", function ()
