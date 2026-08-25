@@ -124,8 +124,99 @@ M.git_diff = function(target_branch)
     end, opts)
 end
 
+-- Estado dos buffers de diff: arquivo de origem e mapa linha-do-diff -> linha-do-arquivo
+M._diffs = {}
+
+-- Mapeia cada linha do diff para a linha correspondente na versão nova do arquivo
+local function build_line_map(lines)
+    local map = {}
+    local lnum = nil
+    for i, line in ipairs(lines) do
+        local hunk_start = line:match("^@@ %-%d+,?%d* %+(%d+)")
+        if hunk_start then
+            lnum = tonumber(hunk_start)
+            map[i] = lnum
+        elseif lnum then
+            local prefix = line:sub(1, 1)
+            if prefix == "+" or prefix == " " then
+                map[i] = lnum
+                lnum = lnum + 1
+            elseif prefix == "-" then
+                -- Linha removida: aponta para onde ela estava, sem consumir uma linha nova
+                map[i] = lnum
+            elseif prefix ~= "\\" then
+                -- Fim do hunk: cabeçalho de outro arquivo ou separador nosso
+                lnum = nil
+            end
+        end
+    end
+    return map
+end
+
+-- Linha do arquivo correspondente ao cursor: exata, senão a próxima abaixo, senão acima
+local function source_lnum(map, cursor, total)
+    if map[cursor] then
+        return map[cursor]
+    end
+    for i = cursor + 1, total do
+        if map[i] then
+            return map[i]
+        end
+    end
+    for i = cursor - 1, 1, -1 do
+        if map[i] then
+            return map[i]
+        end
+    end
+    return nil
+end
+
+-- Coluna à esquerda do diff mostrando a linha real do arquivo
+M.statuscolumn = function()
+    local state = M._diffs[vim.api.nvim_get_current_buf()]
+    if not state then
+        return "%=%l "
+    end
+    if vim.v.virtnum ~= 0 then
+        return "%= "
+    end
+    return "%#LineNr#%=" .. (state.map[vim.v.lnum] or "") .. " "
+end
+
+-- Volta do buffer de diff para o arquivo, na linha sob o cursor
+M.back_to_source = function()
+    local buf = vim.api.nvim_get_current_buf()
+    local state = M._diffs[buf]
+    if not state then
+        return false
+    end
+
+    local cursor = vim.api.nvim_win_get_cursor(0)[1]
+    local lnum = source_lnum(state.map, cursor, vim.api.nvim_buf_line_count(buf))
+
+    vim.cmd('edit ' .. vim.fn.fnameescape(state.file))
+
+    if lnum then
+        lnum = math.min(lnum, vim.api.nvim_buf_line_count(0))
+        vim.api.nvim_win_set_cursor(0, { lnum, 0 })
+        vim.cmd('normal! zz')
+    end
+    return true
+end
+
 -- Função principal para diff do arquivo atual
 M.git_file_diff = function(target_branch)
+    -- Já num buffer de diff: sem argumento, volta para o arquivo na linha sob o cursor;
+    -- com branch explícita, refaz o diff do mesmo arquivo contra ela.
+    local state = M._diffs[vim.api.nvim_get_current_buf()]
+    if state then
+        if target_branch == nil or target_branch == "" then
+            M.back_to_source()
+            return
+        end
+        vim.cmd('edit ' .. vim.fn.fnameescape(state.file))
+    end
+
     local current_file = vim.fn.expand('%:.')
 
     if current_file == "" then
@@ -178,13 +269,44 @@ M.git_file_diff = function(target_branch)
     vim.api.nvim_buf_set_option(buf, 'modifiable', false)
     vim.api.nvim_buf_set_option(buf, 'filetype', 'diff')
 
+    M._diffs[buf] = { file = current_file, map = build_line_map(output) }
+
     vim.cmd('enew')
     vim.api.nvim_set_current_buf(buf)
+
+    -- Mostra a linha do arquivo na coluna da esquerda, restaurando ao sair da janela
+    local win = vim.api.nvim_get_current_win()
+    local saved_stc = vim.api.nvim_get_option_value('statuscolumn', { win = win, scope = 'local' })
+    vim.api.nvim_set_option_value(
+        'statuscolumn',
+        "%{%v:lua.require'allef.core.git_diff'.statuscolumn()%}",
+        { win = win, scope = 'local' }
+    )
+
+    vim.api.nvim_create_autocmd('BufWinLeave', {
+        buffer = buf,
+        callback = function()
+            if vim.api.nvim_win_is_valid(win) then
+                pcall(vim.api.nvim_set_option_value, 'statuscolumn', saved_stc, { win = win, scope = 'local' })
+            end
+        end,
+    })
+
+    vim.api.nvim_create_autocmd('BufWipeout', {
+        buffer = buf,
+        callback = function()
+            M._diffs[buf] = nil
+        end,
+    })
 
     local opts = { noremap = true, silent = true, buffer = buf }
     vim.keymap.set('n', 'q', '<cmd>bdelete<CR>', opts)
     vim.keymap.set('n', '<Esc>', '<cmd>bdelete<CR>', opts)
+    vim.keymap.set('n', '<CR>', function()
+        M.back_to_source()
+    end, opts)
 end
+
 
 -- Registra comando
 vim.api.nvim_create_user_command('GitDiff', function(opts)
