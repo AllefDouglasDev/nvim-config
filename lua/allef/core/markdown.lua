@@ -19,7 +19,7 @@ local function get_bin_path()
   end
 
   local possible_paths = {
-    vim.fn.expand('~/Development/personal/node/markdown/bin/md'),
+    (vim.env.DEV or vim.fn.expand('~/Development')) .. '/personal/node/markdown/bin/md',
     '/usr/local/bin/md',
     vim.fn.fnamemodify(debug.getinfo(1).source:sub(2), ':h') .. '/../bin/md',
   }
